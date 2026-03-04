@@ -10,17 +10,18 @@ class usingVarargsAndEquals {
 
 		String word1 = "casa";
 		String word2 = "Casa";
-		boolean compareWord = word1.equals (word2);
 		String compareResult;
-		
-		switch (compareWord){
-			case (true):
+
+		//compareResult = word1.equals (word2) ? "iguais" : "diferentes";		
+		switch (word1.equals (word2)){
+			case (True):
 				compareResult = "iguais";
 				break;
-			case (false):
+			case (False):
 				compareResult = "diferentes";
 				break;
 		}
+
 		System.out.println ("A palavra " + word1 + " e " + word2 + " são " + compareResult);
 	}
 }
