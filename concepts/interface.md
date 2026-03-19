@@ -1,0 +1,58 @@
+## Interface
+
+Define um comportamento para as classes que a implementam
+Uma única classe pode impementar várias interfaces ao mesmo tempo
+Mutliplas implemntações:
+ * `public class NomeClasse implements interface1, interface2 {}`
+Criando uma interface `Carro`:
+```java
+public interface Carro {
+   public void ligar();
+   public void desligar (int velocidade);
+}
+```
+Implementando a interface `Carro`:
+```java
+public class CarroFamiliar implements Carro {
+   privete String modelo;
+
+   public CarroFamiliar (String newModelo){
+      modelo = newModelo;
+   }
+   public void ligar(){
+      System.out.println (modelo + " ligando");
+   }
+   public void desligar (int velocidade){
+      if (velocidade < 20){
+         System.out.println (modelo + " parando aos poucos");
+      }
+   }
+}
+```
+
+### Interface `Comparable`
+
+A interface `Comparable` impõe ordenação natural
+nos objetos de cada classe que o implementa
+Contém um método `compareTo`, que é um método de
+comparação natural e também usado para ordenar
+O método `compareTo` retorna:
+ * Número negativo: quando o atual é menor que o  objeto de comparação
+ * Número positivo: quando o stual é maior que o  objeto de comparação
+ * Zero: quando ambos os objetos são iguais en termos de sua ordem natural
+É altamente recomendado, mas não obrigatório que:
+```java
+(x.compareTo(y) == 0) == (x.equals(y))
+```
+Exemplo de uma interface `Comparable`:
+```java
+public class minhaClasse implements Comparable <minhaClasse> {
+   protected int order;
+   public minhaClasse (int order {
+      this.order = ordem;
+   }
+   public int compareTo (minhaClasse object) {
+      return ordem - object.order;
+   }
+}
+```
