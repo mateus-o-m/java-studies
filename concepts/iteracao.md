@@ -4,7 +4,8 @@
 
 O `Iterator` pode ser usado para iterar sobre uma coleção
 de valores usando o loop `for` ou o loop `while`
-Exemplo de uso:
+
+#### Exemplo de uso:
 ```java
 List<String> frutas = Arrays.asList ("banana", "laranja", "uva");
 
@@ -18,15 +19,18 @@ List<String> frutas = Arrays.asList ("banana", "laranja", "uva");
  for (Iterator<String> frutasItera = frutas.iterator();
  frutasItera.hasNext()){
     System.out.println (frutasItera.next());
- }</code></p>
+ }
+```
 
 ### Iterar sem índices 
 
 O uso do loop `for` tradicional, com índices explicitos,
 pode levar a erros quando iterando
+
 O uso de loops `for-each` resolve esse problema,
 por não utilizarem índices explicitos
-Exemplo: 
+
+#### Exemplo: 
 ```java
 List<String> frutas = Arrays.asList ("banana", "laranja",  "uva");
 

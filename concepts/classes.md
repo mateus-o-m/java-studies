@@ -1,8 +1,10 @@
 ## Classes
 
 Podem conter qualquer número de variáveis ou métodos, de qualquer tipo
+
 Por convenção, o nome de uma classe deve começar com letra maiuscula
-Exemplo de classe:
+
+#### Exemplo de classe:
 ```java
 public class Carro {
    // campos
@@ -19,8 +21,8 @@ public class Carro {
    void freioDeMao() {}
 }
 ```
-Métdos construtores: inicializam um objeto da classe
-Exmplo:
+
+#### Exemplo de método construtor, que inicializam um objeto da classe:
 ```java
 public class Carro {
    // campos
@@ -38,14 +40,17 @@ public class Carro {
 ### Herança
 
 É o princípio mais representativo da programação orientada á objetos (OOP)
+
 Classes filhas herdam campos e métodos das classes pais
-Formalmente, uma classe pai é chamada de superclasse
+
+Formalmente, uma classe pai é chamada de superclasse 
 e uma classe filha é chamada de subclasse
  * `extends`: herdar as propriedades de uma classe
- * * É possível usar `extends` para extender somente uma superclasse
+   * É possível usar `extends` para extender somente uma superclasse
  * `super (campos_herdados)`: inicializa compos herdados
- * * O comando `super()` deve ser a primeira instrução do método construtor
-Utilizando a classe `Carro` do exemplo anterior:
+   * O comando `super()` deve ser a primeira instrução do método construtor
+
+#### Utilizando a classe `Carro` do exemplo anterior:
 ```java
 public class Carro {}
 public CarroFamiliar extends Carro {
@@ -73,7 +78,7 @@ public CarroFamiliar extends Carro {
 
 Refere-se á possibilidade de uma classe filha definir seu próprio comprtamento,
 mas continuar herdando funcionalidades da classe pai
-Exemplo utilizando a classe pai `Carro`:
+#### Exemplo utilizando a classe pai `Carro`:
 ```java
 public class Carro {}
 public CarroFamiliar extends Carro {
@@ -102,7 +107,7 @@ public CarroFamiliar extends Carro {
 
 ### Classes internas
 
-É possível aninhar classes:
+#### É possível aninhar classes:
 ```java
 class classeExterna {
    ...
@@ -111,9 +116,10 @@ class classeExterna {
    }
 }
 ```
-Uma instância de uma `class` interna só pode existir
-dentro de uma instância da `class` externa
+Uma instância de uma `class` interna só pode existir dentro de uma instância da `class` externa
+
 Uma `class` interna tem acesso a compos e métodos de sua `class` externa
+
 Vantagems do uso de classes internas:
  * Maior encapsulamento
  * Agrupar logicamente as classes
