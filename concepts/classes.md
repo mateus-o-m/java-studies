@@ -124,3 +124,107 @@ Vantagems do uso de classes internas:
  * Maior encapsulamento
  * Agrupar logicamente as classes
  * Maior legibilidade
+
+### Acoplamento de classes
+
+Maneira com que as classes conversam entre si. Existem dois tipos principais:
+ * Acoplamento forte: classes são intrinsecamente ligadas
+   * Para alterar uma classe, é necessário mudar todas as outras ligadas à ela
+ * Acoplamento fraco: classes são independentes entre si
+   * É possível alterar uma classe sem a necessidade de mudar classes ligadas à ela
+
+#### Exemplo de acoplamento forte:
+```java
+public class Item{
+   public String name;
+   public float price;
+   public int quantity;
+}
+
+public class Cart {
+   public Item[] items;
+}
+
+public class Checkout {
+   private Cart cart;
+   private float discount;
+
+   public Checkout (Cart cart, float disc) {
+      this.cart = cart;
+      discount = disc;
+   }
+
+   public float totalPrice() {
+      float total = 0;
+      for (int i = 0; i < cart.items.length; ++i) {
+         total += cart.items[i].price * cart.items[i].quantity;
+      }
+      total = total * (1 - discount);
+      return total;
+   }
+}
+```
+
+#### Exemplo de acoplamento fraco:
+```java
+public class Item {
+   public String name;
+   public float price;
+   public int quantity;
+
+   public float getTotalCost() {
+      return price * quantity;
+   }
+}
+
+public class Cart {
+   public Item[] items;
+
+   public float getCartValue() {
+      float total = 0;
+      for(i = 0 ; i < items.length; ++i) {
+         total += items[i].getTotalCost();
+      }
+   }
+}
+
+public class Checkout {
+   private Cart cart;
+   private float discount;
+
+   public Checkout (Cart cart, float disc) {
+      this.cart = cart;
+      discount = disc;
+   }
+
+   public float toPay() {
+      return cart.getCartValue() * (1-discount);
+   }
+}
+```
+
+### Coesão 
+
+Indica o grau com que os elementos de uma mesma classe estão unidos
+
+O objetivo é fazer com que cada método em uma classe use quantas variáveis forem necessárias
+
+Níveis de coesão:
+ * Baixa coesão: resulta em classes grandes, difíceis de manter e com baixa reusabilidade
+ * Alta coesão: resulta em classes enxutas, fáceis de manter e ampliar
+
+Desacoplar classes normalmente gera maior coesão dentro de cada classe
+
+#### Exemplo de uma boa coesão:
+```c
+public class Item {
+   public String name;
+   public float price;
+   public int quantity;
+   public static int stock;
+
+   public float getTotalCost() {
+      return price * quantity;
+   }
+}
+```
