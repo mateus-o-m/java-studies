@@ -21,14 +21,8 @@ as classes de um pacote
  * `public`: a variável é visível a qualquer classe, inclusive
 as que estão fora do pacote, via `import` da classe/pacote
 
-#### Exemplo de `public`:
+#### Uso de `public`:
 ```java
-String model;
-
-void start() {
-   ...
-}
-
 public class Car {
    public String model;
 
@@ -38,13 +32,13 @@ public class Car {
 }
 
 public class TestClass {
-   public static void main (String[] args) {    
-      Car car = new Car(...);    
+   public static void main (String[] args) {
+      Car car = new Car(...);
       car.model;    
       car.start();
    }
 }
-``
+```
 
 Modificador `private` e `protected`:
  * `private`: faz com que variáveis e métodos fiquem disponíveis
@@ -56,7 +50,7 @@ e "setter" para serem acessadas
 fiquem disponíveis dentro de subclasses em outros pacotes, e
 classes dentro de seu próprio pacote
 
-#### Exemplo `private`:
+#### Uso de `private`:
 ```java
 public class Car {
    private String model;
@@ -72,18 +66,58 @@ public class Car {
 }
 ```
 
-#### Exemplo `protected`:
+#### Uso de `protected`:
+```java
+public class Car{
+   protected void start() {
+      //código de implementação
+   }
+}
 
-public class Car{  protected void start(){    //implementation  }}public class FamilyCar{  public void start(){    //implementation  }}
+public class FamilyCar {
+   public void start() {
+      //código de implementação 
+   }
+}
+```
 
 Modificador `static` e `final`:
  * `static`: variáveis `static` são acessíveis em instâncias fora
 da classe, con todas as instâncias compartilhando a mesma variável 
    * Métodos `static` não são permitidos 
 
-public class Car{  private static int piecesSold = 0;  public Car(){    piecesSold = piecesSold + 1;  }  public static void printSold(){    System.out.print(piecesSold + " ");  }}public class FamilyCar extends Car{  public FamilyCar(){    super();  }}
+#### Uso de `static`:
+```java
+public class Car {
+   private static int piecesSold = 0;
 
-public Car{  private final int value = 10;  private static final int PRICE = 30;  public void changeValue(int x){    value = x; // error  }}
+   public Car() {
+      piecesSold = piecesSold + 1;
+   }
+
+   public static void printSold() {
+      System.out.print (piecesSold + " ");
+   }
+}
+
+public class FamilyCar extends Car {
+   public FamilyCar() {
+      super();
+   }
+}
+```
+
+#### Uso de `private`:
+```java
+public Car {
+   private final int value = 10;
+   private static final int PRICE = 30;
+
+   public void changeValue (int x) {
+      value = x; //gera um erro
+   }
+}
+```
 
 ### Encapsulamento
 
@@ -99,8 +133,42 @@ Métodos que utilizam compos privados:
  * "getter": retornam o valor de um campo privado
  * "setter": atualizam o valor de um campo privado
 
-public class Car{  private String model;  private int noDoors;  public Car(...){   ...  }  public String getModel(){     return model;  }  public int getNoDoors(){     return noDoors;  }  public void setModel(String newModel){    model = newModel;  }  public void setNoDoors(int newNoDoors){    noDoors = newNoDoors;  }
+#### Exemplo:
+```java
+public class Car {
+   private String model;
+   private int noDoors;
 
-Acessando variáveis:
+   public Car (...) {
+      ...
+   }
 
-public class Test{  public static void main(String[] args){    Car car = new Car("NormalCar",4);    car.setNoDoors(3);    car.setModel("EncapCar");    System.out.println(car.getModel()+" "     + car.getNoDoors());  }}
+   public String getModel() {
+      return model;
+   }
+
+   public int getNoDoors() {
+      return noDoors;
+   }
+
+   public void setModel (String newModel) {
+      model = newModel;
+   }
+
+   public void setNoDoors (int newNoDoors) {
+      noDoors = newNoDoors;
+   }
+}
+```
+
+####bAcessando variáveis:
+```java
+public class Test {
+   public static void main (String[] args) {
+      Car car = new Car ("NormalCar", 4);
+      car.setNoDoors(3);
+      car.setModel ("EncapCar");
+      System.out.println (car.getModel() + " " + car.getNoDoors());
+   }
+}
+```

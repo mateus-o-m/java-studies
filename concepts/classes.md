@@ -133,18 +133,16 @@ Maneira com que as classes conversam entre si. Existem dois tipos principais:
  * Acoplamento fraco: classes são independentes entre si
    * É possível alterar uma classe sem a necessidade de mudar classes ligadas à ela
 
-#### Exemplo de acoplamento forte:
+#### Acoplamento forte:
 ```java
-public class Item{
+public class Item {
    public String name;
    public float price;
    public int quantity;
 }
-
 public class Cart {
    public Item[] items;
 }
-
 public class Checkout {
    private Cart cart;
    private float discount;
@@ -165,29 +163,27 @@ public class Checkout {
 }
 ```
 
-#### Exemplo de acoplamento fraco:
+#### Acoplamento fraco:
 ```java
 public class Item {
    public String name;
    public float price;
-   public int quantity;
+   public int quantity
 
    public float getTotalCost() {
       return price * quantity;
    }
 }
-
 public class Cart {
    public Item[] items;
 
    public float getCartValue() {
       float total = 0;
-      for(i = 0 ; i < items.length; ++i) {
+      for (i = 0 ; i < items.length; ++i) {
          total += items[i].getTotalCost();
       }
    }
 }
-
 public class Checkout {
    private Cart cart;
    private float discount;
@@ -196,12 +192,11 @@ public class Checkout {
       this.cart = cart;
       discount = disc;
    }
-
    public float toPay() {
       return cart.getCartValue() * (1-discount);
    }
 }
-```
+``
 
 ### Coesão 
 
@@ -215,16 +210,5 @@ Níveis de coesão:
 
 Desacoplar classes normalmente gera maior coesão dentro de cada classe
 
-#### Exemplo de uma boa coesão:
-```c
-public class Item {
-   public String name;
-   public float price;
-   public int quantity;
-   public static int stock;
+public class Item {  public String name;  public float price;  public int quantity;  public static int stock;  public float getTotalCost() {    return price * quantity;  }}
 
-   public float getTotalCost() {
-      return price * quantity;
-   }
-}
-```
