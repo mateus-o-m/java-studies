@@ -210,5 +210,16 @@ Níveis de coesão:
 
 Desacoplar classes normalmente gera maior coesão dentro de cada classe
 
-public class Item {  public String name;  public float price;  public int quantity;  public static int stock;  public float getTotalCost() {    return price * quantity;  }}
+#### Exemplo de um aclsse coesa:
+```java
+public class Item {
+   public String name;
+   public float price;
+   public int quantity;
+   public static int stock;
 
+   public float getTotalCost() {
+      return price * quantity;
+   }
+}
+```
