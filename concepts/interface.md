@@ -59,3 +59,27 @@ public class minhaClasse implements Comparable <minhaClasse> {
    }
 }
 ```
+
+### Interface como parâmetro de métodos
+
+Métodos aceitarão como parâmetro qualquer objeto que possa implementar a interface
+
+Esta é uma das maneiras mais comuns e úteis de usar uma interface
+
+#### Exemplo:
+```jaba
+interface Test {
+   //definições da interface Test
+   public void test();
+}
+class Tester {
+   //método com a interface Test como paramet
+   public void runTest (Test t) {
+      t.test();
+   }
+}
+//a classe MyTest implementa a interface Test
+class MyTest implements Test {
+   public void test() { // running code }}
+```
+

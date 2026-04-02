@@ -160,6 +160,8 @@ public class Car {
    }
 }
 ```
+}
+```
 
 ####bAcessando variáveis:
 ```java

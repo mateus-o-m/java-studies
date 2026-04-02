@@ -63,6 +63,31 @@ Usar padrão singleton é uma prática melhor
 
 Usar constantes `static`, pode ser considerado bom uso
 
+### Possível alteração de variáveis `private`
+
+Quando há membros privados que serão modificados, o ideal é retornar uma cópia
+#### Membros privados:
+```java
+class MutableClass {
+   private Date d;
+
+   public MutableClass() {
+      d = new Date();
+   }
+
+   //retornando a referência: EVITAR
+   public Date getDate() {
+      return d;
+    }
+
+   //retornando uma cópia
+   public Date getDateCopy() {
+      Date newD = new Date (d.getTime());
+      return newD;
+   }
+}
+```
+
 ### Comando `this (value)`
 
 Possibilita chamar um construtor a partir do construtor padrão,
@@ -148,3 +173,6 @@ CMS(**Concurrent Mark Sweep**): um algorítmo de GC que não
 usa as pausas STW
 
 Ativando CMS: `java -XX>+UseConcMarkSweepGC minhaAplicacao`
+
+
+
