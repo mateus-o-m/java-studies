@@ -223,4 +223,21 @@ public class Item {
    }
 }
 ```
- 
+
+### Classes utilitárias
+
+Definem métodos comuna, que serão reutilizados
+
+Não dependem dos estados de cada objeto, então geralmente são declaradas como `static`
+
+#### Exemplo de classe utilitária
+```java
+public class Utility {
+   private Utility() {}
+
+   public static multiply(int a, int b) {
+      return a * b;
+   }
+   ...
+}
+```

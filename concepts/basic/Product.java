@@ -11,9 +11,6 @@ public class Product {
       name = newName;
    }
 
-   @Override
-   public String toString() {
-      return "Produto: " + name + ", Quantidade: " + quantity + ", Preço: " + price;
-   }
+
 }
 

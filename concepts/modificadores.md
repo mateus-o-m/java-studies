@@ -85,6 +85,10 @@ Modificador `static` e `final`:
  * `static`: variáveis `static` são acessíveis em instâncias fora
 da classe, con todas as instâncias compartilhando a mesma variável 
    * Métodos `static` não são permitidos 
+ * `final`: diferentes significados dependendo de onde é usado
+   * Em classes: a classe não poderá ser extendida
+   * Em métodos: o método não poderá ser sobrescrito
+   * Em variáveis locais, campos ou parâmetros: valores não poderão ser mudadas após terem sido definidos
 
 #### Uso de `static`:
 ```java
