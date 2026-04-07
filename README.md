@@ -13,4 +13,5 @@ Principais conceitos do Java:
 * [Operadores](concepts/operadores.md)
 * [Iteração](concepts/iteracao.md)
 * [Interface](concepts/interface.md)
+* [Exceções](concepts/excecoes.md)
 * [Dicas](concepts/dicas.md)

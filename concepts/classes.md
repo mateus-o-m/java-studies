@@ -230,14 +230,39 @@ Definem métodos comuna, que serão reutilizados
 
 Não dependem dos estados de cada objeto, então geralmente são declaradas como `static`
 
-#### Exemplo de classe utilitária
+#### Exemplo de classe utilitária:
 ```java
 public class Utility {
    private Utility() {}
 
-   public static multiply(int a, int b) {
-      return a * b;
+   public static multiply (int a, int b) {
+       return a * b;
    }
    ...
 }
 ```
+
+### Construtor de cópias 
+
+É a maneira mais simples de criar a cópia de um objeto mutável
+
+Substitui o uso do método `clone()`
+
+#### Considere o objeto Pessoa:
+```java
+public Pessoa (String name, int age) {
+   this.name = name;
+   this.age = age;
+}
+```
+
+O construtor abaixo irá criar uma cópia do objeto Pessoa, com as mesmas propriedades `name` e `age`
+
+#### Construtor de cópias para Pessoa:
+```java
+public Person (Person person) {
+   //person é a nova cópia
+   this (person.getName(), person.getAge());
+}
+```
+
