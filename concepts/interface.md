@@ -73,13 +73,15 @@ interface Test {
    public void test();
 }
 class Tester {
-   //método com a interface Test como paramet
+   //método com a interface Test como parâmetro 
    public void runTest (Test t) {
       t.test();
    }
 }
 //a classe MyTest implementa a interface Test
 class MyTest implements Test {
-   public void test() { // running code }}
+   public void test() {
+      //código 
+   }
+}
 ```
-
