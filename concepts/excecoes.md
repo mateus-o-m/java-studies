@@ -20,7 +20,11 @@ As exceções tem que ser \[tratadas](#tratamento-de-exceções), mas também po
 
 
 
-Exceções também podem ser \[criadas](#criando-exceções), dependendo da necessidade 
+É importante utilizar o tratamento de excessões somente quando \[necessário](#excesso-de-tratamentos)
+
+
+
+Exceções podem ser \[criadas](#criando-exceções) e a causa de uma exceção também pode ser recuperada, dependendo da necessidade 
 
 
 
@@ -54,7 +58,7 @@ try {
 
 
 
-\#### Lidando com múltiplas exceções no mesmo `Catch`:
+\#### Lidando com múltiplas exceções no mesmo `catch`:
 
 ```java
 
@@ -145,6 +149,92 @@ try {
 
 
 \### Exceções não verificadas
+
+
+
+Geralmente causadas por erros de lógica
+
+
+
+Não é esperado que o programa pegue essas exceções, nem que ele se recupere delas
+
+
+
+A origem do erro deve ser eliminada
+
+&#x20;\* Identificar e remover o erro de lógica
+
+
+
+\### Excesso de tratamentos
+
+
+
+É importante tratar exceções somente quando necessário, como em erros considerados críticos
+
+
+
+O uso em excesso pode tornar um programa difícil de ler
+
+
+
+\#### Exemplo de uso excessivo:
+
+```java
+
+public void method() {
+
+&#x20;  validador (p);
+
+}
+
+//valida o código e lança uma exceção 
+
+private void validator (Object p) throws Exception {
+
+&#x20;  try {
+
+&#x20;     //algum código 
+
+&#x20;  } catch {
+
+&#x20;     //exceção 
+
+&#x20;  }
+
+}
+
+```
+
+
+
+\#### Exemplo de uma melhor abordagem:
+
+```java
+
+public void method() {
+
+&#x20;  if (!isValid (p)) throw new Exception();
+
+}
+
+//se "p" for válido (true), nenhuma exceção será lançada
+
+private boolean isValid (Object p) {
+
+&#x20;  return //"true" ou "false"
+
+}
+
+```
+
+
+
+\### Recuperando a causa
+
+
+
+Quando há muitas exceções pode ser necessário recuperar a causa de uma exceção específica 
 
 
 
