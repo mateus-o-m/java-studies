@@ -164,10 +164,8 @@ public class Car {
    }
 }
 ```
-}
-```
 
-####bAcessando variáveis:
+#### Acessando variáveis:
 ```java
 public class Test {
    public static void main (String[] args) {
