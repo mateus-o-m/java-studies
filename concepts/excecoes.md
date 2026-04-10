@@ -24,7 +24,7 @@ As exceções tem que ser \[tratadas](#tratamento-de-exceções), mas também po
 
 
 
-Exceções podem ser \[criadas](#criando-exceções) e a causa de uma exceção também pode ser recuperada, dependendo da necessidade 
+Exceções podem ser \[criadas](#criando-exceções) e a causa de uma exceção também pode ser \[recuperada](#recuperando-a-causa), dependendo da necessidade 
 
 
 
@@ -99,6 +99,30 @@ Por exemplo, um método que soma os elementos de uma lista deve lançar uma exce
 public void umMetodo() throws IOException {
 
 &#x20;  //código
+
+}
+
+```
+
+
+
+Também é possível lançar exceções dentro de outra exceção, o que é chamado de exceções encadeadas
+
+
+
+\#### Exemplo de lançamento de exceção encadeada:
+
+```java
+
+try {
+
+&#x20;  //código que pode lançar uma exceção 
+
+} catch (Exception ex) {
+
+&#x20;  //formato: Exception ("mensagem", objeto\_Throwable)
+
+&#x20;  throw new Exception ("Exceção encadeada", ex);
 
 }
 
@@ -238,6 +262,30 @@ Quando há muitas exceções pode ser necessário recuperar a causa de uma exce�
 
 
 
+O `getCause()` é utilizado, juntamente com `Throwable`, para retornar a causa de uma exceção
+
+
+
+\#### Exemplo:
+
+```java
+
+try {
+
+&#x20;  //alguma ação
+
+} catch (Exception ex) {
+
+&#x20;  //getCause() retornará o objeto que causou a exceção "ex"
+
+&#x20;  Throwable causaExcecao = ex.getCause();
+
+}
+
+```
+
+
+
 \### Criando exceções
 
 
@@ -267,4 +315,6 @@ public class NewException extends Exception {
 }
 
 ```
+
+
 
