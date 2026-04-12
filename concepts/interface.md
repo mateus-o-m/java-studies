@@ -41,9 +41,9 @@ Contém um método `compareTo`, que é um método de
 comparação natural e também usado para ordenar
 
 O método `compareTo` retorna:
- * Número negativo: quando o atual é menor que o  objeto de comparação
- * Número positivo: quando o stual é maior que o  objeto de comparação
- * Zero: quando ambos os objetos são iguais en termos de sua ordem natural
+ - Número negativo: quando o atual é menor que o  objeto de comparação
+ - Número positivo: quando o stual é maior que o  objeto de comparação
+ - Zero: quando ambos os objetos são iguais en termos de sua ordem natural
 
 É  recomendado, mas não obrigatório que: `(x.compareTo(y) == 0) == (x.equals(y))`
 

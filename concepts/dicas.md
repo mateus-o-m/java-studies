@@ -1,4 +1,18 @@
-## DIcas
+## Dicas
+
+Índice de conteúdos:
+ - [Comentários](#comentários)
+ - [Nomes descritivos](#comes-descritivos)
+ - [Pacotes](#pacotes)
+ - [Nomes de pacotes](#convenção-dos-nomes-de-pacotes)
+ - [Uso de variáveis `static`](#evitar-o-uso-de-variáveis-static)
+ - [Alteração de variáveis `private`](#possível-alteração-de-variáveis-private)
+ - [Comando `this´](#comando-this-value)
+ - [Uso de campos `static`](#campos-static)
+ - [Uso de `sizeof`](#uso-do-sizeof)
+ - [Convenção do `range`](#convenção-para-range-de-valores)
+ - [Uso de chaves duplas](#inicialização-com-chaves-duplas)
+ - [Gerenciamento de memória](#gerenciamento-de-memória)
 
 ### Comentários
 
@@ -32,9 +46,9 @@ Usar pacotes permite a importação de um grupo de classes de uma só vez
 Pacote `java.lang`, é um pacote que fornece classes fundamentais
 
 Exemplos:
- * `package java.lang;`especifica que o arquivo Java pertence a um pacote `java.lang`
- * `import java.io.*;` importa todas as classes dentro do pacote `java.io`
- * `import java.io.Cla;` importa somente a classe Cla do pacote `java.io`
+ - `package java.lang;`especifica que o arquivo Java pertence a um pacote `java.lang`
+ - `import java.io.*;` importa todas as classes dentro do pacote `java.io`
+ - `import java.io.Cla;` importa somente a classe Cla do pacote `java.io`
 
 ### Convenção dos nomes de pacotes
 
@@ -44,9 +58,9 @@ Convenção; o domínio da internet da pessoa/empresa responsável
 pelo pacote, escrito ao contrário, seguido pelo nome do pacote
 
 Sempre escritos em letras minúsculas. Exemplo:
- * Dono do pacote: www.empresapacote.com<br>
- * Pacote: pacoteutil
- * Em Java: `package com.empresapackte.utilpackage;`
+ - Dono do pacote: www.empresapacote.com<br>
+ - Pacote: pacoteutil
+ - Em Java: `package com.empresapackte.utilpackage;`
 
 ### Evitar o uso de variáveis `static`
 
@@ -54,10 +68,10 @@ Podem ser usadas como contadores, mas devem ser evitadas
 na maioria dos casos
 
 Problemas:
- * Quebram encapsulamento de objetos 
- * Atrapalha gerenciamento de memória
- * Complica a coleta de lixo de memória
- * Ruim para segurança, reentrância e correspondência
+ - Quebram encapsulamento de objetos 
+ - Atrapalha gerenciamento de memória
+ - Complica a coleta de lixo de memória
+ - Ruim para segurança, reentrância e correspondência
 
 Usar padrão singleton é uma prática melhor
 
@@ -145,7 +159,7 @@ umaFuncao (new HashSet<String> {{
 }} );
 ```
 
-### Gerênciamento de memória
+### Gerenciamento de memória
 
 A liberação de memória usada depende inteiramente do coletor de lixo (GC)
 do Java Virtual Machine (JVM)
@@ -173,6 +187,3 @@ CMS(**Concurrent Mark Sweep**): um algorítmo de GC que não
 usa as pausas STW
 
 Ativando CMS: `java -XX>+UseConcMarkSweepGC minhaAplicacao`
-
-
-

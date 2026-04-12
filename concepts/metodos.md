@@ -37,7 +37,7 @@ Objetos (`String`, `Object`, etc.): um valor de referência, que aponta para o o
 É um método inerente a qualquer `Object`, pode ser definido pelo usuário ou fornecido pelo JDK
 
 Por padrão, `toString ()` retorna:
- * (nome da `class`) + `@` + (valor hexadecimal do `hashcode` da `class`)
+ - (nome da `class`) + `@` + (valor hexadecimal do `hashcode` da `class`)
 
 Usar `@Override`, substitui o retorno padrão de `toString ()`,
 podendo fornecer informações importantes para depuração ou impressão na tela
@@ -86,3 +86,4 @@ public interface interfaceCozinha {
 
 Quando há conflito ente um método `default` e um método comum,
 o compilador Java irá usar a implementação do método comum
+

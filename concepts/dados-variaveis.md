@@ -2,9 +2,9 @@
 
 ### Dados primitivos: tipo mais básico de dados.
 
- * Numéricos: `byte`, `short`, `int`, `long`, `float`,  `double`
- * Caractere: `char`
- * Booleano: `boolean`
+ - Numéricos: `byte`, `short`, `int`, `long`, `float`,  `double`
+ - Caractere: `char`
+ - Booleano: `boolean`
 
 Sufixos: se não especificados, o Java assume `int` para números inteiros e
 `double` para nuúmeros decimais
@@ -19,8 +19,8 @@ long numLong = 876976L;
 ### Dados tipo `String`
 
 Uma `String` não é um primitivo, e sim um objeto
- * Inicialização da `String`: `String nome = "Meu nome";`
- * Concatenar string: `String nomeConcat = "Nome" + "Sobrenome";`
+ - Inicialização da `String`: `String nome = "Meu nome";`
+ - Concatenar string: `String nomeConcat = "Nome" + "Sobrenome";`
 
 ### Especificando o tipo de dado
 

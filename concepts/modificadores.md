@@ -3,22 +3,25 @@
 Palavras-chave que mudam o comportamento de variáveis,
 classes ou métodos
 
+Modificadores são usados para criar [encapsulamentos](#encapsulamento)
+de classes ou objetos, úteis para um código organizado
+
 Modificadores de acesso: indica a visibilidade
- * Nenhum modificador: visível para o pacote
- * `private`: visível somente à classe modificada
- * `public`: visível para todas as classes
- * `protected`: visível para o pacote e para as subclasses
+ - Nenhum modificador: visível para o pacote
+ - [`private`](#uso-de-private): visível somente à classe modificada
+ - [`public`](#uso-de-public): visível para todas as classes
+ - [`protected`](#uso-de-protected): visível para o pacote e para as subclasses
 
 Modificadores de não-acesso: indicam outras funcionalidades
- * `static`: torna uma declaração mais geral, e menos específica 
- * `final`: impede que a referência (da classe, método, variável) seja alterada
- * `abstract`: faz o JVM aguardar as subclasses implementarem
+ - [`static`](#udo-de-static): torna uma declaração mais geral, e menos específica 
+ - [`final`](#uso-de-final): impede que a referência (da classe, método, variável) seja alterada
+ - `abstract`: faz o JVM aguardar as subclasses implementarem
 os métodos/classes
 
 Nenhum modificador e modificador `public`:
- * Sem modificador: a variável é implicitamente visível à todas
+ - Sem modificador: a variável é implicitamente visível à todas
 as classes de um pacote
- * `public`: a variável é visível a qualquer classe, inclusive
+ - `public`: a variável é visível a qualquer classe, inclusive
 as que estão fora do pacote, via `import` da classe/pacote
 
 #### Uso de `public`:
@@ -41,12 +44,12 @@ public class TestClass {
 ```
 
 Modificador `private` e `protected`:
- * `private`: faz com que variáveis e métodos fiquem disponíveis
+ - `private`: faz com que variáveis e métodos fiquem disponíveis
 apenas dentro de suas classes
-   * É usado para ajudar no encapsulamento doa dados
-   * Variáveis privadas necessitam de funções do tipo "getter"
+   - É usado para ajudar no encapsulamento doa dados
+   - Variáveis privadas necessitam de funções do tipo "getter"
 e "setter" para serem acessadas
- * `protected`: faz com que variáveis, métodos e construtores
+ - `protected`: faz com que variáveis, métodos e construtores
 fiquem disponíveis dentro de subclasses em outros pacotes, e
 classes dentro de seu próprio pacote
 
@@ -82,13 +85,13 @@ public class FamilyCar {
 ```
 
 Modificador `static` e `final`:
- * `static`: variáveis `static` são acessíveis em instâncias fora
+ - `static`: variáveis `static` são acessíveis em instâncias fora
 da classe, con todas as instâncias compartilhando a mesma variável 
-   * Métodos `static` não são permitidos 
- * `final`: diferentes significados dependendo de onde é usado
-   * Em classes: a classe não poderá ser extendida
-   * Em métodos: o método não poderá ser sobrescrito
-   * Em variáveis locais, campos ou parâmetros: valores não poderão ser mudadas após terem sido definidos
+   - Métodos `static` não são permitidos 
+ - `final`: diferentes significados dependendo de onde é usado
+   - Em classes: a classe não poderá ser extendida
+   - Em métodos: o método não poderá ser sobrescrito
+   - Em variáveis locais, campos ou parâmetros: valores não poderão ser mudadas após terem sido definidos
 
 #### Uso de `static`:
 ```java
@@ -111,7 +114,7 @@ public class FamilyCar extends Car {
 }
 ```
 
-#### Uso de `private`:
+#### Uso de `final`:
 ```java
 public Car {
    private final int value = 10;
@@ -130,12 +133,12 @@ dentro da classe é necessário para acessá-las
 
 Um objeto encapsulado determina qual tipo de dado será aceito e como
 processar esse dado, sem influencias externas
- * O papel de um objeto encapsulado se torna claro para outros objetos
- * Reduz a interdependência entre classes
+ - O papel de um objeto encapsulado se torna claro para outros objetos
+ - Reduz a interdependência entre classes
 
 Métodos que utilizam compos privados:
- * "getter": retornam o valor de um campo privado
- * "setter": atualizam o valor de um campo privado
+ - "getter": retornam o valor de um campo privado
+ - "setter": atualizam o valor de um campo privado
 
 #### Exemplo:
 ```java

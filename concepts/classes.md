@@ -2,6 +2,15 @@
 
 Podem conter qualquer número de variáveis ou métodos, de qualquer tipo
 
+Conceitos importantes sobre classes:
+ - [Herança](#herança)
+ - [Polimorfismo](#polimorfismo)
+ - [Classes internas](#classes-internas)
+ - [Acoplamento de classes](#acoplamento-de-classes)
+ - [Coesão](#coesão)
+ - [Classes utilitárias](#classes-utilitárias)
+ - [Construtor de cópias](#contrutor-de-cópias)
+
 Por convenção, o nome de uma classe deve começar com letra maiuscula
 
 #### Exemplo de classe:
@@ -45,10 +54,10 @@ Classes filhas herdam campos e métodos das classes pais
 
 Formalmente, uma classe pai é chamada de superclasse 
 e uma classe filha é chamada de subclasse
- * `extends`: herdar as propriedades de uma classe
-   * É possível usar `extends` para extender somente uma superclasse
- * `super (campos_herdados)`: inicializa compos herdados
-   * O comando `super()` deve ser a primeira instrução do método construtor
+ - `extends`: herdar as propriedades de uma classe
+   - É possível usar `extends` para extender somente uma superclasse
+ - `super (campos_herdados)`: inicializa compos herdados
+   - O comando `super()` deve ser a primeira instrução do método construtor
 
 #### Utilizando a classe `Carro` do exemplo anterior:
 ```java
@@ -121,17 +130,17 @@ Uma instância de uma `class` interna só pode existir dentro de uma instância 
 Uma `class` interna tem acesso a compos e métodos de sua `class` externa
 
 Vantagems do uso de classes internas:
- * Maior encapsulamento
- * Agrupar logicamente as classes
- * Maior legibilidade
+ - Maior encapsulamento
+ - Agrupar logicamente as classes
+ - Maior legibilidade
 
 ### Acoplamento de classes
 
 Maneira com que as classes conversam entre si. Existem dois tipos principais:
- * Acoplamento forte: classes são intrinsecamente ligadas
-   * Para alterar uma classe, é necessário mudar todas as outras ligadas à ela
- * Acoplamento fraco: classes são independentes entre si
-   * É possível alterar uma classe sem a necessidade de mudar classes ligadas à ela
+ - Acoplamento forte: classes são intrinsecamente ligadas
+   - Para alterar uma classe, é necessário mudar todas as outras ligadas à ela
+ - Acoplamento fraco: classes são independentes entre si
+   - É possível alterar uma classe sem a necessidade de mudar classes ligadas à ela
 
 #### Acoplamento forte:
 ```java
@@ -196,7 +205,7 @@ public class Checkout {
       return cart.getCartValue() * (1-discount);
    }
 }
-``
+``´
 
 ### Coesão 
 
@@ -205,8 +214,8 @@ Indica o grau com que os elementos de uma mesma classe estão unidos
 O objetivo é fazer com que cada método em uma classe use quantas variáveis forem necessárias
 
 Níveis de coesão:
- * Baixa coesão: resulta em classes grandes, difíceis de manter e com baixa reusabilidade
- * Alta coesão: resulta em classes enxutas, fáceis de manter e ampliar
+ - Baixa coesão: resulta em classes grandes, difíceis de manter e com baixa reusabilidade
+ - Alta coesão: resulta em classes enxutas, fáceis de manter e ampliar
 
 Desacoplar classes normalmente gera maior coesão dentro de cada classe
 
@@ -265,4 +274,3 @@ public Person (Person person) {
    this (person.getName(), person.getAge());
 }
 ```
-

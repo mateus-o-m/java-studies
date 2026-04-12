@@ -8,11 +8,11 @@ São eventos que ocorrem durante a execução do programa que interrompem o flux
 
 Há dois tipos de exceções:
 
-&#x20;\* \[Verificadas](#exceções-verificadas): são verificadas no estágio de compilação
+&#x20;- \[Verificadas](#exceções-verificadas): são verificadas no estágio de compilação
 
-&#x20;\* \[Não verificadas](#exceções-não-verificadas): ocorrem durante a execução, devido à erros de lógica
+&#x20;- \[Não verificadas](#exceções-não-verificadas): ocorrem durante a execução, devido à erros de lógica
 
-&#x20;  \* São subclasses diretas da classe `RuntimeException`
+&#x20;  - São subclasses diretas da classe `RuntimeException`
 
 
 
@@ -82,7 +82,7 @@ try {
 
 Uma exceção deve ser lançada se uma suposição importante para um bloco de código não for verdadeira
 
-&#x20;\* Formato: `throw new Exception()`
+&#x20;- Formato: `throw new Exception()`
 
 
 
@@ -186,7 +186,7 @@ Não é esperado que o programa pegue essas exceções, nem que ele se recupere 
 
 A origem do erro deve ser eliminada
 
-&#x20;\* Identificar e remover o erro de lógica
+&#x20;- Identificar e remover o erro de lógica
 
 
 
@@ -292,9 +292,9 @@ try {
 
 É possível criar uma exceção personalizada usando `extend Exceptions`, útil para:
 
-&#x20;\* Diferenciar exceções lançadas por suas clasees das lançadas por outras classes
+&#x20;- Diferenciar exceções lançadas por suas clasees das lançadas por outras classes
 
-&#x20;\* Diferenciar entre exceções semelhantes/relacionadas
+&#x20;- Diferenciar entre exceções semelhantes/relacionadas
 
 
 
