@@ -7,7 +7,7 @@
  - [Nomes de pacotes](#convenção-dos-nomes-de-pacotes)
  - [Uso de variáveis `static`](#evitar-o-uso-de-variáveis-static)
  - [Alteração de variáveis `private`](#possível-alteração-de-variáveis-private)
- - [Comando `this´](#comando-this-value)
+ - [Comando `this`](#comando-this-value)
  - [Uso de campos `static`](#campos-static)
  - [Uso de `sizeof`](#uso-do-sizeof)
  - [Convenção do `range`](#convenção-para-range-de-valores)
