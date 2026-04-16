@@ -18,10 +18,6 @@ Funções void: métodos que não retornam nenhum valor
 Funções não-void: retornam um valor específico, que pode ser de qualquer
 tipo, primitivo ou não
 
-### Método construtor
-
-São métodos que inicializam objetos
-
 ### Passagem de argumentos como referência
 
 Não é possível passar um argumento como referência para um método. Um exemplo de referência seria o ponteiro
