@@ -83,3 +83,33 @@ public interface interfaceCozinha {
 Quando há conflito ente um método `default` e um método comum,
 o compilador Java irá usar a implementação do método comum
 
+### Overloading métodos
+
+Criar dois ou mais métodos com o mesmo nome, porém com parâmetros diferentes
+
+#### Exemplo:
+```java
+void addPerson (String name, int age){}
+void addPerson (String name){} 
+```
+
+### Overriding métodos
+
+Redefine um método herdado de uma super classe
+
+O novo método terá os mesmos parâmetros, mas a definição será diferente 
+
+#### Exemplo:
+```java
+public class Pai {
+   int metodo (int parameter) {
+      return parameter * 2;
+   }
+}
+public class Filho extends Pai {
+   @Override
+   int metodo (int parameter) {
+      return parameter * 3;
+   }
+}
+```

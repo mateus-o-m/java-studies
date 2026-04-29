@@ -13,6 +13,7 @@
  - [Convenção do `range`](#convenção-para-range-de-valores)
  - [Uso de chaves duplas](#inicialização-com-chaves-duplas)
  - [Gerenciamento de memória](#gerenciamento-de-memória)
+ - [Usando a classe TimeZone](#timezone)
 
 ### Comentários
 
@@ -187,3 +188,5 @@ CMS(**Concurrent Mark Sweep**): um algorítmo de GC que não
 usa as pausas STW
 
 Ativando CMS: `java -XX>+UseConcMarkSweepGC minhaAplicacao`
+
+### TimeZone
