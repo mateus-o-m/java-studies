@@ -14,6 +14,8 @@
  - [Uso de chaves duplas](#inicialização-com-chaves-duplas)
  - [Gerenciamento de memória](#gerenciamento-de-memória)
  - [Usando a classe TimeZone](#timezone)
+ - [Medição de tempo](#medindo-o-tempo)
+ - [Uso da classe Locale](#classe-locale)
 
 ### Comentários
 
@@ -189,4 +191,63 @@ usa as pausas STW
 
 Ativando CMS: `java -XX>+UseConcMarkSweepGC minhaAplicacao`
 
-### TimeZone
+### `TimeZone`
+
+É usada para recuperar o fuso horário de um local específico e também pode calcular o horário de verão
+
+Métodos da classe `TimeZone`;
+ - `getDefault`: obtem o fuso horário do local em que o programa está sendo executado 
+ - `getTimeZone`: permite obter o fuso horário de uma cidade específica, utilizando um ID de fuso horário 
+
+#### Exemplo:
+```java
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
+public class TesteFusoHorario {
+   public static void main (String args[]) {
+   //objeto Calendar representando um fuso horário 
+   Calendar calendario = new GregorianCalendar (TimeZone.getTimeZone ("America/New_York"));
+   int hora = calendario.get (Calendar.HOUR_OF_DAY);
+   int minuto = calemdario.get (Calendar.MINUTE);
+   int segundo = calendario.get (Calendar.SECOND);
+   
+   System.out.printf ("Horário de New York: %02d:%02d:%02d", hora, minuto, segundo);
+   }
+}
+```
+
+### Medindo o tempo
+
+Algumas aplicações necessitam de uma medição de tempo precisa
+
+A função `currentTimeMillis()` retorna o tempo (como `long`), em milissegundos, desde o Epoch (ponto inicial de referência, desde o início do sistema)
+
+#### Exemplo de uso do `currentTimeMillis()`:
+```java
+long horarioInicial = System.currentTimeMillis();
+long horarioEstimado = System.currentTimeMillis() - horarioInicial;
+```
+
+Já a função `nanoTime()` retorna o valor atual (como `long`) do temporizador mais preciso disponível no sistema, em nanosegundos 
+ - É destinado para medir intervalos de tempo relativo
+ - Não fornece temporização absoluta
+
+#### Exemplo de uso do `nanoTime()`:
+```java
+long horarioInicial = System.nanoTime();
+long horarioEstimado = System.nanoTime() - horarioInicial;
+```
+
+### Classe `Locale`
+
+Pode ser usada para representar doferentes regiões, linguagens e scripts 
+
+Muito usado para formatar outputs relativos à localidade
+
+#### Exemplo de uso:
+```java
+System.out.format ("%f", 3.14); //output: 3.14
+System.out.format (nLocale.("pt", "BR"), "%f", 3.14); //output: 3,14
+```
