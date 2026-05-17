@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Industry {
 	int numId;
 	float costValue;
@@ -28,9 +30,23 @@ public class Industry {
 		showCompanyLicense ();
 	}
 	
-	public static void main (){
-		Industry fabricaDePaes = new Industry (001, 706548.54f, 'C', true, "Padaria Céu Azul");
+	public static void main (String args[]){
+	Scanner input = new Scanner (System.in);
+	System.out.println ("Digite os dados da compania");
 
-		fabricaDePaes.showCompanyStats();
+	System.out.print ("Digite o nome: ");
+	String name = input.nextLine();
+	System.out.print ("Digite o ID: ");
+	int id = input.nextInt();
+	System.out.print ("Digite o valor: ");
+	float cost = input.nextFloat();
+	System.out.print ("Digite a categoria: ");
+	char category = input.next().charAt(0);
+
+	Industry industria = new Industry (id, cost, category, true, name);
+		
+	//Industry fabricaDePaes = new Industry (001, 706548.54f, 'C', true, "Padaria Céu Azul");
+
+	industria.showCompanyStats();
 	}
 }
