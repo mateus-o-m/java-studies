@@ -6,53 +6,54 @@ public class Basic {
 	}
 }
 
-public class Industry {
-	int numId;
-	float costValue;
-	char category;
-	boolean hasLicense;
-	String companyName;
+public class DataTypes {
+	int age;
+	float height;
+	char gender;
+	boolean isStudying;
+	String name;
 
-	public Industry (int newNumId, float newCostValue, char newCategory, boolean newHasLicense, String newCompanyName){
-		numId = newNumId;
-		costValue = newCostValue;
-		category = newCategory;
-		hasLicense = newHasLicense;
-		companyName = newCompanyName;
+	public Industry (int newAge, float newHeight, boolean newIsStudying, String newName){
+		age = newAge;
+		height = newHeight;
+		isStudying = newIsStudying;
+		name = newName;
 	}
 
-	void showCompanyLicense(){
-		if (hasLicense == true){
-			System.out.println (companyName + " tem licensa para operar");
-		} else if (hasLicense == false){
-			System.out.println (companyName + " não possui licensa para operar");
+	void showIsStudying(){
+		if (isStudying == true){
+			System.out.println (name + " é estudante");
+		} else if (isSutying == false){
+			System.out.println (name + " não é estudante");
 		}
 	}
-	void showCompanyStats(){
-		System.out.println ("Nome da empresa: " + companyName);
-		System.out.println ("ID da empresa: " + numId);
-		System.out.println ("Classe da empresa: " + category);
-		System.out.println ("Valor da empresa: " + costValue);
-		showCompanyLicense ();
+
+	void showData(){
+		System.out.println ("Nome: " + name);
+		System.out.println ("Idade: " + age);
+		System.out.println ("Gênero: " + gender);
+		System.out.println ("Altura: " + height);
+		showIsStudying ();
 	}
 	
 	public static void main (String args[]){
-	Scanner input = new Scanner (System.in);
-	System.out.println ("Digite os dados da compania");
+		Scanner input = new Scanner (System.in);
+		System.out.println ("Preencha os dados da pessoa");
 
-	System.out.print ("Digite o nome: ");
-	String name = input.nextLine();
-	System.out.print ("Digite o ID: ");
-	int id = input.nextInt();
-	System.out.print ("Digite o valor: ");
-	float cost = input.nextFloat();
-	System.out.print ("Digite a categoria: ");
-	char category = input.next().charAt(0);
+		System.out.print ("Digite o nome: ");
+		String name = input.nextLine();
+		System.out.print ("Digite a idade: ");
+		int age = input.nextInt();
+		System.out.print ("Digite a altura: ");
+		float height = input.nextFloat();
+		System.out.print ("Escolha o gênero: ");
+		//implementar função para escolha
+		//char category = input.next().charAt(0);
 
-	Industry industria = new Industry (id, cost, category, true, name);
-		
-	//Industry fabricaDePaes = new Industry (001, 706548.54f, 'C', true, "Padaria Céu Azul");
+		DataType pessoa = new DataType (age, geight, gender, true, name);
+			
+		//Industry fabricaDePaes = new Industry (001, 706548.54f, 'C', true, "Padaria Céu Azul");
 
-	industria.showCompanyStats();
+		pessoa.showData();
 	}
 }
