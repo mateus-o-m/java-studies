@@ -6,7 +6,7 @@ public class Basic {
 	}
 }
 
-public class DataTypes {
+class DataTypes {
 	int age;
 	float height;
 	char gender;
