@@ -13,12 +13,12 @@ class DataTypes {
 	boolean isStudying;
 	String name;
 
-	public DataTypes (int newAge, float newHeight, char newGender, boolean newIsStudying, String newName){
-		age = newAge;
-		height = newHeight;
-		gender = newGender;
-		isStudying = newIsStudying;
-		name = newName;
+	public DataTypes (int age, float height, char gender, boolean isStudying, String name){
+		this.age = age;
+		this.height = height;
+		this.gender = gender;
+		this.isStudying = isStudying;
+		this.name = name;
 	}
 
 	void showIsStudying(){
