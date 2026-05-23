@@ -69,7 +69,7 @@ class DataTypes {
 
 	static <T> T userChoice (int choice, T...options){
 		if (choice >= 1 && choice <= options.length) {
-			return (T) options[choice];
+			return (T) options[choice - 1];
 		}
 		return null;
 	}
