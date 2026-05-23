@@ -7,34 +7,47 @@ public class Basic {
 }
 
 class DataTypes {
-	int age;
-	float height;
-	char bloodType;
-	boolean hasWork;
-	String name;
+	int num;
+	float decimal;
+	char ch;
+	boolean bo;
+	String str;
 
-	public DataTypes (int age, float height, char bloodType, boolean hasWork, String name){
-		this.age = age;
-		this.height = height;
-		this.bloodType = bloodType;
-		this.hasWork = hasWork;
-		this.name = name;
+	static String numStr = "Idade: ";
+	static String decimalStr = "Altura: ";
+	static String strStr = "Nome: ";
+
+	static String chStr = "Tipo sanguíneo: ";
+	static char chA = 'A';
+	static char chB = 'B';
+	static char chO = 'O';
+
+	static String boStr = "Trabalha? ";
+	static String boTrueStr = "trabalha";
+	static String boFalseStr = "não trabalha";
+
+	public DataTypes (int num, float decimal, char ch, boolean bo, String str){
+		this.num = num;
+		this.decimal = decimal;
+		this.ch = ch;
+		this.bo = bo;
+		this.str = str;
 	}
 
-	void showHasWork(){
-		if (hasWork == true){
-			System.out.println (name + " trabalha");
-		} else if (hasWork == false){
-			System.out.println (name + " não trabalha");
+	void showBoolean(){
+		if (bo == true){
+			System.out.println (str + boTrueStr);
+		} else if (bo == false){
+			System.out.println (str + boFalseStr);
 		}
 	}
 
 	void showData(){
-		System.out.println ("Nome: " + name);
-		System.out.println ("Idade: " + age);
-		System.out.println ("Gênero: " + bloodType);
-		System.out.println ("Altura: " + height);
-		showHasWork ();
+		System.out.println (strStr + str);
+		System.out.println (numStr + num);
+		System.out.println (chStr + ch);
+		System.out.println (decimalStr + decimal);
+		showBoolean ();
 	}
 	
 	static <T> T userInput (String message, Class <T> dataType, Scanner scan){
@@ -53,18 +66,16 @@ class DataTypes {
 	}
 
 	public static void main (String args[]){
-		int choose;
 		boolean chooseBool = false;
 		char chooseChar = ' ';
 		Scanner input = new Scanner (System.in);
 		System.out.println ("Preencha os dados abaixo");
 
-		String name = userInput ("Nome: ", String.class, input);
-		int age = userInput ("Idade: ", Integer.class, input);
-		float height = userInput ("Altura: ", Float.class, input);
+		String str = userInput (strStr, String.class, input);
+		int num = userInput (numStr, Integer.class, input);
+		float decimal = userInput (decimalStr, Float.class, input);
+		int choose = userInput (chStr, Integer.class, input);
 
-		System.out.printf ("Escolha o gênero, digite:\n(1) para masculino\n(2) para femenino\n=>: ");
-		choose = input.nextInt();
 		//implementar função para escolha
 		switch (choose){
 			case (1):
@@ -87,7 +98,7 @@ class DataTypes {
 		}
 		//char category = input.next().charAt(0);
 
-		DataTypes pessoa = new DataTypes (age, height, chooseChar, chooseBool, name);
+		DataTypes pessoa = new DataTypes (num, decimal, chooseChar, chooseBool, str);
 			
 		//Industry fabricaDePaes = new Industry (001, 706548.54f, 'C', true, "Padaria Céu Azul");
 
