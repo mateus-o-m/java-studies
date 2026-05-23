@@ -37,6 +37,16 @@ class DataTypes {
 		showIsStudying ();
 	}
 	
+	static <T> T userInput (String message, Class <T> dataType, Scanner scan){
+		System.out.print (message);
+		String input = scan.nextLine();
+		if (dataType == Integer.class){
+			Integer num = Integer.parseInt (input);
+			return (T) num;
+		} 
+		return null;
+	}
+
 	public static void main (String args[]){
 		int choose;
 		boolean chooseBool = false;
@@ -46,8 +56,9 @@ class DataTypes {
 
 		System.out.print ("Digite o nome: ");
 		String name = input.nextLine();
-		System.out.print ("Digite a idade: ");
-		int age = input.nextInt();
+		//System.out.print ("Digite a idade: ");
+		//int age = input.nextInt();
+		int age = userInput ("Idade: ", Integer.class, input);
 		System.out.print ("Digite a altura: ");
 		float height = input.nextFloat();
 		System.out.printf ("Escolha o gênero, digite:\n(1) para masculino\n(2) para femenino\n=>: ");
