@@ -21,7 +21,7 @@ class DataTypes {
 		this.name = name;
 	}
 
-	void showhasWork(){
+	void showHasWork(){
 		if (hasWork == true){
 			System.out.println (name + " trabalha");
 		} else if (hasWork == false){
@@ -34,7 +34,7 @@ class DataTypes {
 		System.out.println ("Idade: " + age);
 		System.out.println ("Gênero: " + bloodType);
 		System.out.println ("Altura: " + height);
-		showhasWork ();
+		showHasWork ();
 	}
 	
 	static <T> T userInput (String message, Class <T> dataType, Scanner scan){
