@@ -9,32 +9,32 @@ public class Basic {
 class DataTypes {
 	int age;
 	float height;
-	char gender;
-	boolean isStudying;
+	char bloodType;
+	boolean hasWork;
 	String name;
 
-	public DataTypes (int age, float height, char gender, boolean isStudying, String name){
+	public DataTypes (int age, float height, char bloodType, boolean hasWork, String name){
 		this.age = age;
 		this.height = height;
-		this.gender = gender;
-		this.isStudying = isStudying;
+		this.bloodType = bloodType;
+		this.hasWork = hasWork;
 		this.name = name;
 	}
 
-	void showIsStudying(){
-		if (isStudying == true){
-			System.out.println (name + " é estudante");
-		} else if (isStudying == false){
-			System.out.println (name + " não é estudante");
+	void showhasWork(){
+		if (hasWork == true){
+			System.out.println (name + " trabalha");
+		} else if (hasWork == false){
+			System.out.println (name + " não trabalha");
 		}
 	}
 
 	void showData(){
 		System.out.println ("Nome: " + name);
 		System.out.println ("Idade: " + age);
-		System.out.println ("Gênero: " + gender);
+		System.out.println ("Gênero: " + bloodType);
 		System.out.println ("Altura: " + height);
-		showIsStudying ();
+		showhasWork ();
 	}
 	
 	static <T> T userInput (String message, Class <T> dataType, Scanner scan){
@@ -43,7 +43,12 @@ class DataTypes {
 		if (dataType == Integer.class){
 			Integer num = Integer.parseInt (input);
 			return (T) num;
-		} 
+		} else if (dataType == Float.class){
+			Float num = Float.parseFloat (input);
+			return (T) num;
+		} else if (dataType == String.class){
+			return (T) input;
+		}
 		return null;
 	}
 
@@ -52,15 +57,12 @@ class DataTypes {
 		boolean chooseBool = false;
 		char chooseChar = ' ';
 		Scanner input = new Scanner (System.in);
-		System.out.println ("Preencha os dados da pessoa");
+		System.out.println ("Preencha os dados abaixo");
 
-		System.out.print ("Digite o nome: ");
-		String name = input.nextLine();
-		//System.out.print ("Digite a idade: ");
-		//int age = input.nextInt();
+		String name = userInput ("Nome: ", String.class, input);
 		int age = userInput ("Idade: ", Integer.class, input);
-		System.out.print ("Digite a altura: ");
-		float height = input.nextFloat();
+		float height = userInput ("Altura: ", Float.class, input);
+
 		System.out.printf ("Escolha o gênero, digite:\n(1) para masculino\n(2) para femenino\n=>: ");
 		choose = input.nextInt();
 		//implementar função para escolha
