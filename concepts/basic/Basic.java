@@ -13,9 +13,10 @@ class DataTypes {
 	boolean isStudying;
 	String name;
 
-	public Industry (int newAge, float newHeight, boolean newIsStudying, String newName){
+	public DataTypes (int newAge, float newHeight, char newGender, boolean newIsStudying, String newName){
 		age = newAge;
 		height = newHeight;
+		gender = newGender;
 		isStudying = newIsStudying;
 		name = newName;
 	}
@@ -23,7 +24,7 @@ class DataTypes {
 	void showIsStudying(){
 		if (isStudying == true){
 			System.out.println (name + " é estudante");
-		} else if (isSutying == false){
+		} else if (isStudying == false){
 			System.out.println (name + " não é estudante");
 		}
 	}
@@ -37,6 +38,9 @@ class DataTypes {
 	}
 	
 	public static void main (String args[]){
+		int choose;
+		boolean chooseBool = false;
+		char chooseChar = ' ';
 		Scanner input = new Scanner (System.in);
 		System.out.println ("Preencha os dados da pessoa");
 
@@ -46,11 +50,31 @@ class DataTypes {
 		int age = input.nextInt();
 		System.out.print ("Digite a altura: ");
 		float height = input.nextFloat();
-		System.out.print ("Escolha o gênero: ");
+		System.out.printf ("Escolha o gênero, digite:\n(1) para masculino\n(2) para femenino\n=>: ");
+		choose = input.nextInt();
 		//implementar função para escolha
+		switch (choose){
+			case (1):
+				chooseChar = 'M';
+				break;
+			case (2):
+				chooseChar = 'F';
+				break;
+		}
+		choose = 0;
+		System.out.printf ("É estudante?\n(1) Sim\n(2) Não\n=>: ");
+		choose = input.nextInt();
+		switch (choose){
+			case (1):
+				chooseBool = true;
+				break;
+			case (2):
+				chooseBool = false;
+				break;
+		}
 		//char category = input.next().charAt(0);
 
-		DataType pessoa = new DataType (age, geight, gender, true, name);
+		DataTypes pessoa = new DataTypes (age, height, chooseChar, chooseBool, name);
 			
 		//Industry fabricaDePaes = new Industry (001, 706548.54f, 'C', true, "Padaria Céu Azul");
 
