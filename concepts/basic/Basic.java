@@ -18,13 +18,15 @@ class DataTypes {
 	static String strStr = "Nome: ";
 
 	static String chStr = "Tipo sanguíneo: ";
-	static char chA = 'A';
-	static char chB = 'B';
-	static char chO = 'O';
+	static char ch1 = 'A';
+	static char ch2 = 'B';
+	static char ch3 = 'O';
+	static String chChoice = chStr + "\n(1) " + ch1 + "\n(2) " + ch2 + "\n(3) " + ch3 + "\n=>";
 
 	static String boStr = "Trabalha? ";
-	static String boTrueStr = "trabalha";
-	static String boFalseStr = "não trabalha";
+	static String boTrueStr = " trabalha";
+	static String boFalseStr = " não trabalha";
+	static String boChoice = boStr + "\n(1)" + boTrueStr + "\n(2)" + boFalseStr + "\n=>";
 
 	public DataTypes (int num, float decimal, char ch, boolean bo, String str){
 		this.num = num;
@@ -65,43 +67,29 @@ class DataTypes {
 		return null;
 	}
 
+	static <T> T userChoice (int choice, T...options){
+		if (choice >= 1 && choice <= options.length) {
+			return (T) options[choice];
+		}
+		return null;
+	}
+
 	public static void main (String args[]){
-		boolean chooseBool = false;
-		char chooseChar = ' ';
+		int choice;
 		Scanner input = new Scanner (System.in);
 		System.out.println ("Preencha os dados abaixo");
 
 		String str = userInput (strStr, String.class, input);
 		int num = userInput (numStr, Integer.class, input);
 		float decimal = userInput (decimalStr, Float.class, input);
-		int choose = userInput (chStr, Integer.class, input);
 
-		//implementar função para escolha
-		switch (choose){
-			case (1):
-				chooseChar = 'M';
-				break;
-			case (2):
-				chooseChar = 'F';
-				break;
-		}
-		choose = 0;
-		System.out.printf ("É estudante?\n(1) Sim\n(2) Não\n=>: ");
-		choose = input.nextInt();
-		switch (choose){
-			case (1):
-				chooseBool = true;
-				break;
-			case (2):
-				chooseBool = false;
-				break;
-		}
-		//char category = input.next().charAt(0);
+		choice = userInput (chChoice, Integer.class, input);
+		char chooseChar = userChoice (choice, ch1, ch2, ch3);
+		choice = userInput (boChoice, Integer.class, input);
+		boolean chooseBool = userChoice (choice, true, false);
 
 		DataTypes pessoa = new DataTypes (num, decimal, chooseChar, chooseBool, str);
 			
-		//Industry fabricaDePaes = new Industry (001, 706548.54f, 'C', true, "Padaria Céu Azul");
-
 		pessoa.showData();
 	}
 }
