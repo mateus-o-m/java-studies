@@ -52,6 +52,38 @@ class DataTypes {
 		showBoolean ();
 	}
 	
+	/*
+	int verifyAge (int num){
+		if (num >= 10 && num >= 100){
+			return num;
+		} else {
+			System,out.printf ("%d é um valor inváldo", num);
+		}
+	}
+
+	float verifyHeight (float decimal){
+		if (decimal <= 1.0 && decimal <=2.5){
+			return decimal;
+		} else {
+			System.out.printf ("%.2f é um valor inválido", decimal);
+		}
+	}
+
+	int verifyChoice (int num, int max, int min){
+		if (num >= min && num <=max){
+			return num;
+		} else {
+			System.out.printf ("%d é um valor inválido", num);
+		}
+	}
+
+	void DataTypesLoop (DataTypes array[lenght], int length){
+		for (int i = 0; i <= (lenght - 1); i++){
+
+		}
+	}
+	*/
+
 	static <T> T userInput (String message, Class <T> dataType, Scanner scan){
 		System.out.print (message);
 		String input = scan.nextLine();
@@ -88,6 +120,7 @@ class DataTypes {
 		choice = userInput (boChoice, Integer.class, input);
 		boolean chooseBool = userChoice (choice, true, false);
 
+		DataTypes[] pessoas = new DataTypes[5];
 		DataTypes pessoa = new DataTypes (num, decimal, chooseChar, chooseBool, str);
 			
 		pessoa.showData();
