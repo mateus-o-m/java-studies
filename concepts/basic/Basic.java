@@ -7,15 +7,15 @@ public class Basic {
 }
 
 class DataTypes {
-	int num;
-	float decimal;
-	char ch;
-	boolean bo;
-	String str;
+	int age;
+	float height;
+	char blood;
+	boolean hasWork;
+	String name;
 
-	static String numStr = "Idade: ";
-	static String decimalStr = "Altura: ";
-	static String strStr = "Nome: ";
+	static String ageStr = "Idade: ";
+	static String heightStr = "Altura: ";
+	static String nameStr = "Nome: ";
 
 	static <T> String menuString (T...str){
 		int count = 1;
@@ -29,63 +29,63 @@ class DataTypes {
 	}
 
 
-	static String chStr = "Tipo sanguíneo: ";
-	static char ch1 = 'A';
-	static char ch2 = 'B';
-	static char ch3 = 'O';
-	static String chChoice = chStr + menuString (ch1, ch2, ch3);
+	static String bloodStr = "Tipo sanguíneo: ";
+	static char blood1 = 'A';
+	static char blood2 = 'B';
+	static char blood3 = 'O';
+	static String bloodChoice = bloodStr + menuString (blood1, blood2, blood3);
 
-	static String boStr = "Trabalha? ";
-	static String boTrueStr = " trabalha";
-	static String boFalseStr = " não trabalha";
-	static String boChoice = boStr + menuString (boTrueStr, boFalseStr);
+	static String hasWorkStr = "Trabalha? ";
+	static String hasWTrueStr = " trabalha";
+	static String hasWFalseStr = " não trabalha";
+	static String hasWorkChoice = hasWorkStr + menuString (hasWTrueStr, hasWFalseStr);
 
-	public DataTypes (int num, float decimal, char ch, boolean bo, String str){
-		this.num = num;
-		this.decimal = decimal;
-		this.ch = ch;
-		this.bo = bo;
-		this.str = str;
+	public DataTypes (int age, float height, char blood, boolean hasWork, String name){
+		this.age = age;
+		this.height = height;
+		this.blood = blood;
+		this.hasWork = hasWork;
+		this.name = name;
 	}
 
 	void showBoolean(){
-		if (bo == true){
-			System.out.println (str + boTrueStr);
-		} else if (bo == false){
-			System.out.println (str + boFalseStr);
+		if (hasWork == true){
+			System.out.println (name + hasWTrueStr);
+		} else if (hasWork == false){
+			System.out.println (name + hasWFalseStr);
 		}
 	}
 
 	void showData(){
-		System.out.println (strStr + str);
-		System.out.println (numStr + num);
-		System.out.println (chStr + ch);
-		System.out.println (decimalStr + decimal);
+		System.out.println (nameStr + name);
+		System.out.println (ageStr + age);
+		System.out.println (bloodStr + blood);
+		System.out.println (heightStr + height);
 		showBoolean ();
 	}
 	
 	/*
-	int verifyAge (int num){
-		if (num >= 10 && num >= 100){
-			return num;
+	int verifyAge (int age){
+		if (age >= 10 && age >= 100){
+			return age;
 		} else {
-			System,out.printf ("%d é um valor inváldo", num);
+			System,out.printf ("%d é um valor inváldo", age);
 		}
 	}
 
-	float verifyHeight (float decimal){
-		if (decimal <= 1.0 && decimal <=2.5){
-			return decimal;
+	float verifyHeight (float height){
+		if (height <= 1.0 && height <=2.5){
+			return height;
 		} else {
-			System.out.printf ("%.2f é um valor inválido", decimal);
+			System.out.printf ("%.2f é um valor inválido", height);
 		}
 	}
 
-	int verifyChoice (int num, int max, int min){
-		if (num >= min && num <=max){
-			return num;
+	int verifyChoice (int age, int max, int min){
+		if (age >= min && age <=max){
+			return age;
 		} else {
-			System.out.printf ("%d é um valor inválido", num);
+			System.out.printf ("%d é um valor inválido", age);
 		}
 	}
 
@@ -124,17 +124,17 @@ class DataTypes {
 		Scanner input = new Scanner (System.in);
 		System.out.println ("Preencha os dados abaixo");
 
-		String str = userInput (strStr, String.class, input);
-		int num = userInput (numStr, Integer.class, input);
-		float decimal = userInput (decimalStr, Float.class, input);
+		String name = userInput (nameStr, String.class, input);
+		int age = userInput (ageStr, Integer.class, input);
+		float height = userInput (heightStr, Float.class, input);
 
-		choice = userInput (chChoice, Integer.class, input);
-		char chooseChar = userChoice (choice, ch1, ch2, ch3);
-		choice = userInput (boChoice, Integer.class, input);
+		choice = userInput (bloodChoice, Integer.class, input);
+		char chooseChar = userChoice (choice, blood1, blood2, blood3);
+		choice = userInput (hasWorkChoice, Integer.class, input);
 		boolean chooseBool = userChoice (choice, true, false);
 
 		DataTypes[] pessoas = new DataTypes[5];
-		DataTypes pessoa = new DataTypes (num, decimal, chooseChar, chooseBool, str);
+		DataTypes pessoa = new DataTypes (age, height, chooseChar, chooseBool, name);
 			
 		pessoa.showData();
 	}
