@@ -17,16 +17,28 @@ class DataTypes {
 	static String decimalStr = "Altura: ";
 	static String strStr = "Nome: ";
 
+	static <T> String menuString (T...str){
+		int count = 1;
+		String menu = "";
+		for (T word: str){
+			menu = menu + "\n(" + count + ") " + word;
+			count ++;
+		}
+		menu = menu + "\n=> ";
+		return menu;
+	}
+
+
 	static String chStr = "Tipo sanguíneo: ";
 	static char ch1 = 'A';
 	static char ch2 = 'B';
 	static char ch3 = 'O';
-	static String chChoice = chStr + "\n(1) " + ch1 + "\n(2) " + ch2 + "\n(3) " + ch3 + "\n=>";
+	static String chChoice = chStr + menuString (ch1, ch2, ch3);
 
 	static String boStr = "Trabalha? ";
 	static String boTrueStr = " trabalha";
 	static String boFalseStr = " não trabalha";
-	static String boChoice = boStr + "\n(1)" + boTrueStr + "\n(2)" + boFalseStr + "\n=>";
+	static String boChoice = boStr + menuString (boTrueStr, boFalseStr);
 
 	public DataTypes (int num, float decimal, char ch, boolean bo, String str){
 		this.num = num;
@@ -78,6 +90,7 @@ class DataTypes {
 	}
 
 	void DataTypesLoop (DataTypes array[lenght], int length){
+		DataTypes[] pess
 		for (int i = 0; i <= (lenght - 1); i++){
 
 		}
