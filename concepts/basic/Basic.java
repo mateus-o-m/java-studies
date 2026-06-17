@@ -13,7 +13,11 @@ public class Basic { //main class
 //class that uses different data types
 class DataTypes {
 	int age;
+	int minAge = 10;
+	int maxAge = 100;
 	float height;
+	float minHeight = 1.0;
+	float maxHeight = 2.3;
 	char blood;
 	boolean hasWork;
 	String name;
@@ -22,8 +26,9 @@ class DataTypes {
 		|| reusable strings 
 		\/
 	*/
-	static String errNullStr = "Não foi possível ler o input, tente novamente\n";
-	static String invalidInputStr = "é um valor inválido";
+	static String errNullStr = "Não foi possível ler o input, tente novamente";
+	static String errNumStr = "Formato numérico inválido";
+	static String errInputStr = "é um valor inválido";
 
 	static String ageStr = "Idade: ";
 	static String heightStr = "Altura: ";
@@ -81,16 +86,15 @@ class DataTypes {
 		showBoolean ();
 	}
 	
-	/*
 	static <T> T verifyInput (T input, T min, T max){
 		if (input >= min && input <= max){
-			return input;
+			return (T) input;
 		} else {
-			System.out.printf ("%s %s", input, invalidInputStr);
+			System.out.printf ("%s %s", input, errInputStr);
 			return null;
 		}
 	}
-
+	/*
 	float verifyHeight (float height){
 		if (height <= 1.0 && height <=2.5){
 			return height;
@@ -121,7 +125,7 @@ class DataTypes {
 			String input = scan.nextLine();
 
 			if (input.isEmpty()){
-				System.out.print (errNullStr);
+				System.out.println (errNullStr);
 				continue;
 			}
 			try {
@@ -140,9 +144,9 @@ class DataTypes {
 					continue;
 				}
 			} catch (NumberFormatException e){
-            	System.out.println("Erro: Por favor, digite um número válido.");
-        	} catch (IllegalArgumentException e) {
-            	System.out.println(e.getMessage());
+            	System.out.println ("Erro: Por favor, digite um número válido.");
+        	} catch (IllegalArgumentException e){
+            	System.out.println (e.getMessage());
         	}
 		}
 	}
@@ -175,12 +179,12 @@ class DataTypes {
 		System.out.println ("Preencha os dados abaixo");
 
 		String name = userInput (nameStr, String.class, input);
-		int age = userInput (ageStr, Integer.class, input);
-		float height = userInput (heightStr, Float.class, input);
+		int age = userInput (ageStr, Integer.class, input, minAge, maxAge);
+		float height = userInput (heightStr, Float.class, input, minHeight, maxHeight);
 
-		choice = userInput (bloodChoice, Integer.class, input);
+		choice = userInput (bloodChoice, Integer.class, input, 1, 3);
 		char chooseChar = userChoice (choice, blood1, blood2, blood3);
-		choice = userInput (hasWorkChoice, Integer.class, input);
+		choice = userInput (hasWorkChoice, Integer.class, input, 1, 2);
 		boolean chooseBool = userChoice (choice, true, false);
 
 		DataTypes[] pessoas = new DataTypes[5];
