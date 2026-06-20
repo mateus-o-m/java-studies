@@ -13,11 +13,11 @@ public class Basic { //main class
 //class that uses different data types
 class DataTypes {
 	int age;
-	int minAge = 10;
-	int maxAge = 100;
+	static int minAge = 10;
+	static int maxAge = 100;
 	float height;
-	float minHeight = 1.0;
-	float maxHeight = 2.3;
+	static float minHeight = 1.0f;
+	static float maxHeight = 2.3f;
 	char blood;
 	boolean hasWork;
 	String name;
@@ -27,8 +27,8 @@ class DataTypes {
 		\/
 	*/
 	static String errNullStr = "Não foi possível ler o input, tente novamente";
-	static String errNumStr = "Formato numérico inválido";
-	static String errInputStr = "é um valor inválido";
+	static String errNumStr = "Formato numérico inválido, tente novamente";
+	static String errInputStr = " é um valor inválido, tente novamente";
 
 	static String ageStr = "Idade: ";
 	static String heightStr = "Altura: ";
@@ -86,38 +86,18 @@ class DataTypes {
 		showBoolean ();
 	}
 	
-	static <T> T verifyInput (T input, T min, T max){
-		if (input >= min && input <= max){
+	static <T extends Comparable <T>> T verifyInput (T input, T min, T max){
+		if (input.compareTo(min) >= 0 && input.compareTo(max) <= 0){
 			return (T) input;
 		} else {
-			System.out.printf ("%s %s", input, errInputStr);
+			System.out.println (input + errInputStr);
 			return null;
 		}
 	}
-	/*
-	float verifyHeight (float height){
-		if (height <= 1.0 && height <=2.5){
-			return height;
-		} else {
-			System.out.printf ("%.2f é um valor inválido", height);
-		}
-	}
 
-	int verifyChoice (int age, int max, int min){
-		if (age >= min && age <=max){
-			return age;
-		} else {
-			System.out.printf ("%d é um valor inválido", age);
-		}
+	static <T> T userInput (String message, Class<T> dataType, Scanner scan) {
+		return userInput (message, dataType, scan, null, null);
 	}
-
-	void DataTypesLoop (DataTypes array[lenght], int length){
-		DataTypes[] pess
-		for (int i = 0; i <= (lenght - 1); i++){
-
-		}
-	}
-	*/
 
 	static <T> T userInput (String message, Class <T> dataType, Scanner scan, T min, T max){
 		while (true){
@@ -129,42 +109,31 @@ class DataTypes {
 				continue;
 			}
 			try {
-				if (dataType == Integer.class){
-					Integer numInput = Integer.parseInt (input.trim());
-					Integer num = verifyInput (numInput, min, max);
-				} else if (dataType == Float.class){
-					Float numInput = Float.parseFloat (input.trim());
-					Float num = verifyInput (numInput, min, max);
-				} else if (dataType == String.class){
+				T num = null;
+				if (dataType == String.class){
 					return (T) input;
 				}
-				if (num != null){
-					return (T) num;
-				} else {
-					continue;
+				if (min != null && max != null){
+					if (dataType == Integer.class){
+						Integer numInput = Integer.parseInt (input.trim());
+						num = (T) verifyInput (numInput, (Integer) min, (Integer) max);
+					} else if (dataType == Float.class){
+						Float numInput = Float.parseFloat (input.trim());
+						num = (T) verifyInput (numInput, (Float) min, (Float) max);
+					}
+					if (num != null){
+						return (T) num;
+					} else {
+						continue;
+					}
 				}
 			} catch (NumberFormatException e){
-            	System.out.println ("Erro: Por favor, digite um número válido.");
+            	System.out.println (errNumStr);
         	} catch (IllegalArgumentException e){
             	System.out.println (e.getMessage());
         	}
 		}
 	}
-
-	/*
-	static <T> T inputLoop (String input, Class <T> dataType){
-		if (dataType == Integer.class){
-			Integer num = Integer.parseInt (input.trim());
-			return (T) num;
-		} else if (dataType == Float.class){
-			Float num = Float.parseFloat (input.trim());
-			return (T) num;
-		} else if (dataType == String.class){
-			return (T) input;
-		}
-		return null;
-	}
-	*/
 
 	static <T> T userChoice (int choice, T...options){
 		if (choice >= 1 && choice <= options.length) {
