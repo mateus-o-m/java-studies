@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Basic { //main class
-	public static void main (String args[]) {
+	public static void main (String args[]){
 		System.out.println ("Um programa que contém conceitos básicos de Java");
 	}
 	/*
@@ -11,16 +11,17 @@ public class Basic { //main class
 }
 
 //class that uses different data types
-class DataTypes {
-	int age;
+class DataTypes extends ImputHelper {
+	private int age;
+	private float height;
+	private char blood;
+	private boolean hasWork;
+	private String name;
+
 	static int minAge = 10;
 	static int maxAge = 100;
-	float height;
 	static float minHeight = 1.0f;
 	static float maxHeight = 2.3f;
-	char blood;
-	boolean hasWork;
-	String name;
 
 	/*
 		|| reusable strings 
@@ -70,6 +71,7 @@ class DataTypes {
 		this.name = name;
 	}
 
+	//visualizations \/
 	void showBoolean(){
 		if (hasWork == true){
 			System.out.println (name + hasWTrueStr);
@@ -85,16 +87,41 @@ class DataTypes {
 		System.out.println (heightStr + height);
 		showBoolean ();
 	}
-	
+	//visualizations /\
+
+	public static void main (String args[]){
+		int choice;
+		Scanner input = new Scanner (System.in);
+		System.out.println ("Preencha os dados abaixo");
+
+		String name = userInput (nameStr, String.class, input);
+		int age = userInput (ageStr, Integer.class, input, minAge, maxAge);
+		float height = userInput (heightStr, Float.class, input, minHeight, maxHeight);
+
+		choice = userInput (bloodChoice, Integer.class, input, 1, 3);
+		char chooseChar = userChoice (choice, blood1, blood2, blood3);
+		choice = userInput (hasWorkChoice, Integer.class, input, 1, 2);
+		boolean chooseBool = userChoice (choice, true, false);
+
+		DataTypes[] pessoas = new DataTypes[5];
+		DataTypes pessoa = new DataTypes (age, height, chooseChar, chooseBool, name);
+			
+		pessoa.showData();
+	}
+}
+
+class ImputHelper {
+	//verify user numeric inputs, can have both integer or decimal arguments
 	static <T extends Comparable <T>> T verifyInput (T input, T min, T max){
 		if (input.compareTo(min) >= 0 && input.compareTo(max) <= 0){
 			return (T) input;
 		} else {
-			System.out.println (input + errInputStr);
+			System.out.println (input + DataTypes.errInputStr);
 			return null;
 		}
 	}
 
+	
 	static <T> T userInput (String message, Class<T> dataType, Scanner scan) {
 		return userInput (message, dataType, scan, null, null);
 	}
@@ -105,7 +132,7 @@ class DataTypes {
 			String input = scan.nextLine();
 
 			if (input.isEmpty()){
-				System.out.println (errNullStr);
+				System.out.println (DataTypes.errNullStr);
 				continue;
 			}
 			try {
@@ -128,7 +155,7 @@ class DataTypes {
 					}
 				}
 			} catch (NumberFormatException e){
-            	System.out.println (errNumStr);
+            	System.out.println (DataTypes.errNumStr);
         	} catch (IllegalArgumentException e){
             	System.out.println (e.getMessage());
         	}
@@ -140,25 +167,5 @@ class DataTypes {
 			return (T) options[choice - 1];
 		}
 		return null;
-	}
-
-	public static void main (String args[]){
-		int choice;
-		Scanner input = new Scanner (System.in);
-		System.out.println ("Preencha os dados abaixo");
-
-		String name = userInput (nameStr, String.class, input);
-		int age = userInput (ageStr, Integer.class, input, minAge, maxAge);
-		float height = userInput (heightStr, Float.class, input, minHeight, maxHeight);
-
-		choice = userInput (bloodChoice, Integer.class, input, 1, 3);
-		char chooseChar = userChoice (choice, blood1, blood2, blood3);
-		choice = userInput (hasWorkChoice, Integer.class, input, 1, 2);
-		boolean chooseBool = userChoice (choice, true, false);
-
-		DataTypes[] pessoas = new DataTypes[5];
-		DataTypes pessoa = new DataTypes (age, height, chooseChar, chooseBool, name);
-			
-		pessoa.showData();
 	}
 }
