@@ -12,6 +12,7 @@ public class Basic { //main class
 
 //class that uses different data types
 class DataTypes extends ImputHelper {
+	static String regexStr = "^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
 	private int age;
 	private float height;
 	private char blood;
@@ -113,7 +114,7 @@ class DataTypes extends ImputHelper {
 class ImputHelper {
 	//verify user numeric inputs, can have both integer or decimal arguments
 	static <T extends Comparable <T>> T verifyInput (T input, T min, T max){
-		if (input.compareTo(min) >= 0 && input.compareTo(max) <= 0){
+		if (input.compareTo (min) >= 0 && input.compareTo (max) <= 0){
 			return (T) input;
 		} else {
 			System.out.println (input + DataTypes.errInputStr);
@@ -122,37 +123,26 @@ class ImputHelper {
 	}
 
 	
-	static <T> T userInput (String message, Class<T> dataType, Scanner scan) {
-		return userInput (message, dataType, scan, null, null);
+	//userInput method overloader
+	static <T extends Comparable <T>> T userInput (String message, Class<T> dataType, Scanner scan) {
+		return userInput (message, dataType, scan, null, null); //specific to String data types
 	}
 
-	static <T> T userInput (String message, Class <T> dataType, Scanner scan, T min, T max){
+	//input gather loop
+	static <T extends Comparable <T>> T userInput (String message, Class <T> dataType, Scanner scan, T min, T max){
 		while (true){
 			System.out.print (message);
-			String input = scan.nextLine();
+			String input = scan.nextLine().trim(); //create usefull input
 
 			if (input.isEmpty()){
 				System.out.println (DataTypes.errNullStr);
 				continue;
 			}
 			try {
-				T num = null;
-				if (dataType == String.class){
-					return (T) input;
-				}
-				if (min != null && max != null){
-					if (dataType == Integer.class){
-						Integer numInput = Integer.parseInt (input.trim());
-						num = (T) verifyInput (numInput, (Integer) min, (Integer) max);
-					} else if (dataType == Float.class){
-						Float numInput = Float.parseFloat (input.trim());
-						num = (T) verifyInput (numInput, (Float) min, (Float) max);
-					}
-					if (num != null){
-						return (T) num;
-					} else {
-						continue;
-					}
+				if (processInput (input, dataType, min, max) == null){
+					continue;
+				} else { 
+					return processInput (input, dataType, min, max);
 				}
 			} catch (NumberFormatException e){
             	System.out.println (DataTypes.errNumStr);
@@ -162,6 +152,32 @@ class ImputHelper {
 		}
 	}
 
+	//validation and data process
+	static <T extends Comparable <T>> T processInput (String input, Class<T> dataType, T min, T max){
+		if (dataType == String.class){
+			if (DataTypes.regexStr != null && input.matches (DataTypes.regexStr)){
+				return (T) input;
+			} else {
+				System.out.println (input + DataTypes.errInputStr);
+				return null;
+			}
+		}
+
+		T num = null;
+		if (dataType == Integer.class){
+			num = (T) Integer.valueOf (input);
+		} else if (dataType == Float.class){
+			num = (T) Float.valueOf (input);
+		}
+
+		if (num != null && min != null && max != null){
+			return (T) verifyInput (num, min, max);
+		} else {
+			return null;
+		}
+	}
+
+	//numeric choice menu
 	static <T> T userChoice (int choice, T...options){
 		if (choice >= 1 && choice <= options.length) {
 			return (T) options[choice - 1];
