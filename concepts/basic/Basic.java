@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 //class that uses different data types
 class DataTypes extends ImputHelper {
-	static String regexStr = "^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
 	private int age;
 	private float height;
 	private char blood;
@@ -13,6 +12,7 @@ class DataTypes extends ImputHelper {
 	static int maxAge = 100;
 	static float minHeight = 1.0f;
 	static float maxHeight = 2.3f;
+	static String regexStr = "^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
 
 	/*
 		|| reusable strings 
@@ -26,6 +26,7 @@ class DataTypes extends ImputHelper {
 	static String heightStr = "Altura: ";
 	static String nameStr = "Nome: ";
 
+	//loop to create choice menu strings
 	static <T> String menuString (T...str){
 		int count = 1;
 		String menu = "";
@@ -53,16 +54,10 @@ class DataTypes extends ImputHelper {
 		|| reusable strings
 	*/
 
-	//future feature: add get method and set method
-	public DataTypes (int age, float height, char blood, boolean hasWork, String name){
-		this.age = age;
-		this.height = height;
-		this.blood = blood;
-		this.hasWork = hasWork;
-		this.name = name;
-	}
-
-	//visualizations \/
+	/*
+		|| visualizations 
+		\/
+	*/
 	void showBoolean(){
 		if (hasWork == true){
 			System.out.println (name + hasWTrueStr);
@@ -78,7 +73,19 @@ class DataTypes extends ImputHelper {
 		System.out.println (heightStr + height);
 		showBoolean ();
 	}
-	//visualizations /\
+	/*
+		/\
+		|| visualizations
+	*/
+
+	//future feature: update to get method and set method
+	public DataTypes (int age, float height, char blood, boolean hasWork, String name){
+		this.age = age;
+		this.height = height;
+		this.blood = blood;
+		this.hasWork = hasWork;
+		this.name = name;
+	}
 
 	public static void main (String args[]){
 		int choice;
@@ -94,6 +101,7 @@ class DataTypes extends ImputHelper {
 		choice = userInput (hasWorkChoice, Integer.class, input, 1, 2);
 		boolean chooseBool = userChoice (choice, true, false);
 
+		//future update: replace to get and set methods
 		DataTypes[] pessoas = new DataTypes[5];
 		DataTypes pessoa = new DataTypes (age, height, chooseChar, chooseBool, name);
 			
@@ -101,6 +109,7 @@ class DataTypes extends ImputHelper {
 	}
 }
 
+//utilitaries
 class ImputHelper {
 	//verify user numeric inputs, can have both integer or decimal arguments
 	static <T extends Comparable <T>> T verifyInput (T input, T min, T max){
