@@ -1,15 +1,5 @@
 import java.util.Scanner;
 
-public class Basic { //main class
-	public static void main (String args[]){
-		System.out.println ("Um programa que contém conceitos básicos de Java");
-	}
-	/*
-	future features:
-	- menu to access subclasses
-	*/
-}
-
 //class that uses different data types
 class DataTypes extends ImputHelper {
 	static String regexStr = "^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
