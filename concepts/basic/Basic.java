@@ -38,6 +38,13 @@ class DataTypes extends ImputHelper {
 		return menu;
 	}
 
+	/*
+	public String getName() { return name; }
+    public int getAge() { return age; }
+    public float getHeight() { return height; }
+    public char getBlood() { return blood; }
+    public boolean isHasWork() { return hasWork; }
+	*/
 
 	static String bloodStr = "Tipo sanguíneo: ";
 	static char blood1 = 'A';
