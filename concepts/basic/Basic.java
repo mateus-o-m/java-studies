@@ -39,11 +39,37 @@ class DataTypes extends ImputHelper {
 	}
 
 	/*
-	public String getName() { return name; }
-    public int getAge() { return age; }
-    public float getHeight() { return height; }
-    public char getBlood() { return blood; }
-    public boolean isHasWork() { return hasWork; }
+	public String getName(){
+		return name;
+	}
+	public int getAge(){
+		return age;
+	}
+	public float getHeight(){
+		return height;
+	}
+	public char getBlood(){
+		return blood;
+	}
+	public boolean HasWork(){
+		return hasWork;
+	}
+
+	public void setAge (int age){
+		if (InputHelper.verifyInput (age, DataTypes.minAge, DataTypes.maxAge) != null){
+			this.age = age;
+		} else {
+			throw new IllegalArgumentException ("Tentativa de atribuir idade inválida ao objeto.");
+		}
+	}
+
+	public void setHeight (int height){
+		if (InputHelper.verifyInput (heigth, DataTypes.minHeight, DataTypes.maxHwight) != null){
+			this.height = height;
+		} else {
+			throw new IllegalArgumentException ("Tentativa de atribuir altura inválida ao objeto");
+		}
+	}
 	*/
 
 	static String bloodStr = "Tipo sanguíneo: ";
