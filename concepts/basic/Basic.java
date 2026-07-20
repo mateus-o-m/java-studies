@@ -21,6 +21,7 @@ class DataTypes extends ImputHelper {
 	static String errNullStr = "Não foi possível ler o input, tente novamente";
 	static String errNumStr = "Formato numérico inválido, tente novamente";
 	static String errInputStr = " é um valor inválido, tente novamente";
+	static String errIllegalStr = "Não foi possível atribuir o valor";
 
 	static String ageStr = "Idade: ";
 	static String heightStr = "Altura: ";
@@ -51,7 +52,7 @@ class DataTypes extends ImputHelper {
 	public char getBlood(){
 		return blood;
 	}
-	public boolean HasWork(){
+	public boolean getHasWork(){
 		return hasWork;
 	}
 
@@ -59,15 +60,23 @@ class DataTypes extends ImputHelper {
 		if (InputHelper.verifyInput (age, DataTypes.minAge, DataTypes.maxAge) != null){
 			this.age = age;
 		} else {
-			throw new IllegalArgumentException ("Tentativa de atribuir idade inválida ao objeto.");
+			throw new IllegalArgumentException (errIllegalStr);
 		}
 	}
 
-	public void setHeight (int height){
+	public void setHeight (float height){
 		if (InputHelper.verifyInput (heigth, DataTypes.minHeight, DataTypes.maxHwight) != null){
 			this.height = height;
 		} else {
-			throw new IllegalArgumentException ("Tentativa de atribuir altura inválida ao objeto");
+			throw new IllegalArgumentException (errIllegalStr);
+		}
+	}
+
+	public void setName (String name){
+		if (InputHelper.processInput (name, String.class); != null){
+			this.name = name;
+		} else {
+			throw new IllegalArgumentException (errIllegalStr);
 		}
 	}
 	*/
@@ -99,6 +108,7 @@ class DataTypes extends ImputHelper {
 		}
 	}
 
+	//update to get methods: name -> getName, age -> getAge ...
 	void showData(){
 		System.out.println (nameStr + name);
 		System.out.println (ageStr + age);
@@ -155,10 +165,14 @@ class ImputHelper {
 	}
 
 	
-	//userInput method overloader
+	//methods overloader for String data types
 	static <T extends Comparable <T>> T userInput (String message, Class<T> dataType, Scanner scan) {
-		return userInput (message, dataType, scan, null, null); //specific to String data types
+		return userInput (message, dataType, scan, null, null);
 	}
+	static <T extends Comparable <T>> T processInput (String input, Class<T> dataType) {
+		return processInput (input, dataType);
+	}
+
 
 	//input gather loop
 	static <T extends Comparable <T>> T userInput (String message, Class <T> dataType, Scanner scan, T min, T max){
