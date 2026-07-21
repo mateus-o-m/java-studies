@@ -1,13 +1,16 @@
 import java.util.Scanner;
+import java.util.function;
 
 //class that uses different data types
 class DataTypes extends ImputHelper {
+	//main variables
 	private int age;
 	private float height;
 	private char blood;
 	private boolean hasWork;
 	private String name;
 
+	//limits/patterns for main variables
 	static int minAge = 10;
 	static int maxAge = 100;
 	static float minHeight = 1.0f;
@@ -38,48 +41,6 @@ class DataTypes extends ImputHelper {
 		menu = menu + "\n=> ";
 		return menu;
 	}
-
-	/*
-	public String getName(){
-		return name;
-	}
-	public int getAge(){
-		return age;
-	}
-	public float getHeight(){
-		return height;
-	}
-	public char getBlood(){
-		return blood;
-	}
-	public boolean getHasWork(){
-		return hasWork;
-	}
-
-	public void setAge (int age){
-		if (InputHelper.verifyInput (age, DataTypes.minAge, DataTypes.maxAge) != null){
-			this.age = age;
-		} else {
-			throw new IllegalArgumentException (errIllegalStr);
-		}
-	}
-
-	public void setHeight (float height){
-		if (InputHelper.verifyInput (heigth, DataTypes.minHeight, DataTypes.maxHwight) != null){
-			this.height = height;
-		} else {
-			throw new IllegalArgumentException (errIllegalStr);
-		}
-	}
-
-	public void setName (String name){
-		if (InputHelper.processInput (name, String.class); != null){
-			this.name = name;
-		} else {
-			throw new IllegalArgumentException (errIllegalStr);
-		}
-	}
-	*/
 
 	static String bloodStr = "Tipo sanguíneo: ";
 	static char blood1 = 'A';
@@ -121,6 +82,48 @@ class DataTypes extends ImputHelper {
 		|| visualizations
 	*/
 
+	/*
+	public String getName(){
+		return name;
+	}
+	public int getAge(){
+		return age;
+	}
+	public float getHeight(){
+		return height;
+	}
+	public char getBlood(){
+		return blood;
+	}
+	public boolean getHasWork(){
+		return hasWork;
+	}
+
+	public void setAge (int age, ){
+		if (InputHelper.verifyInput (age, DataTypes.minAge, DataTypes.maxAge) != null){
+			this.age = age;
+		} else {
+			throw new IllegalArgumentException (errIllegalStr);
+		}
+	}
+
+	public void setHeight (float height){
+		if (InputHelper.verifyInput (heigth, DataTypes.minHeight, DataTypes.maxHwight) != null){
+			this.height = height;
+		} else {
+			throw new IllegalArgumentException (errIllegalStr);
+		}
+	}
+
+	public void setName (String name){
+		if (InputHelper.processInput (name, String.class); != null){
+			this.name = name;
+		} else {
+			throw new IllegalArgumentException (errIllegalStr);
+		}
+	}
+	*/
+
 	//future feature: update to get method and set method
 	public DataTypes (int age, float height, char blood, boolean hasWork, String name){
 		this.age = age;
@@ -135,9 +138,9 @@ class DataTypes extends ImputHelper {
 		Scanner input = new Scanner (System.in);
 		System.out.println ("Preencha os dados abaixo");
 
-		String name = userInput (nameStr, String.class, input);
-		int age = userInput (ageStr, Integer.class, input, minAge, maxAge);
-		float height = userInput (heightStr, Float.class, input, minHeight, maxHeight);
+		String nameInput = userInput (nameStr, String.class, input);
+		int ageInput = userInput (ageStr, Integer.class, input, minAge, maxAge);
+		float heightInput = userInput (heightStr, Float.class, input, minHeight, maxHeight);
 
 		choice = userInput (bloodChoice, Integer.class, input, 1, 3);
 		char chooseChar = userChoice (choice, blood1, blood2, blood3);
@@ -146,7 +149,7 @@ class DataTypes extends ImputHelper {
 
 		//future update: replace to get and set methods
 		DataTypes[] pessoas = new DataTypes[5];
-		DataTypes pessoa = new DataTypes (age, height, chooseChar, chooseBool, name);
+		DataTypes pessoa = new DataTypes (ageInput, heightInput, chooseChar, chooseBool, nameInput);
 			
 		pessoa.showData();
 	}
