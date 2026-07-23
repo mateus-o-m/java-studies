@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.function;
+import java.util.function.Predicate;
 
 //class that uses different data types
 class DataTypes extends ImputHelper {
@@ -82,7 +82,6 @@ class DataTypes extends ImputHelper {
 		|| visualizations
 	*/
 
-	/*
 	public String getName(){
 		return name;
 	}
@@ -99,30 +98,32 @@ class DataTypes extends ImputHelper {
 		return hasWork;
 	}
 
-	public void setAge (int age, ){
-		if (InputHelper.verifyInput (age, DataTypes.minAge, DataTypes.maxAge) != null){
+	//predicate: InputHelper.verifyInput (age, DataTypes.minAge, DataTypes.maxAge)
+	public void setAge (int age, Predicate<Integer> verifier){
+		if (verifier.test (age)){
 			this.age = age;
 		} else {
 			throw new IllegalArgumentException (errIllegalStr);
 		}
 	}
 
-	public void setHeight (float height){
-		if (InputHelper.verifyInput (heigth, DataTypes.minHeight, DataTypes.maxHwight) != null){
+	//predicate: InputHelper.verifyInput (heigth, DataTypes.minHeight, DataTypes.maxHwight)
+	public void setHeight (float height, Predicate<Float> verifier){
+		if (verifier.test (height)){
 			this.height = height;
 		} else {
 			throw new IllegalArgumentException (errIllegalStr);
 		}
 	}
 
-	public void setName (String name){
-		if (InputHelper.processInput (name, String.class); != null){
+	//predicate: InputHelper.processInput (name, String.class)
+	public void setName (String name, Predicate<String> verifier){
+		if (verifier.test (name)){
 			this.name = name;
 		} else {
 			throw new IllegalArgumentException (errIllegalStr);
 		}
 	}
-	*/
 
 	//future feature: update to get method and set method
 	public DataTypes (int age, float height, char blood, boolean hasWork, String name){
@@ -135,6 +136,7 @@ class DataTypes extends ImputHelper {
 
 	public static void main (String args[]){
 		int choice;
+		DataTypes pessoa = new DataTypes ();
 		Scanner input = new Scanner (System.in);
 		System.out.println ("Preencha os dados abaixo");
 
@@ -147,10 +149,11 @@ class DataTypes extends ImputHelper {
 		choice = userInput (hasWorkChoice, Integer.class, input, 1, 2);
 		boolean chooseBool = userChoice (choice, true, false);
 
-		//future update: replace to get and set methods
-		DataTypes[] pessoas = new DataTypes[5];
-		DataTypes pessoa = new DataTypes (ageInput, heightInput, chooseChar, chooseBool, nameInput);
-			
+		pessoa.setName (nameInput, InputHelper.processInput (name, String.class));
+		pessoa.setAge (ageInput, InputHelper.verifyInput (age, DataTypes.minAge, DataTypes.maxAge));
+		pessoa.setHeight (heightInput, InputHelper.verifyInput (heigth, DataTypes.minHeight, DataTypes.maxHwight);
+
+					
 		pessoa.showData();
 	}
 }
