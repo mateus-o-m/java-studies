@@ -46,12 +46,12 @@ class DataTypes extends ImputHelper {
 	static char blood1 = 'A';
 	static char blood2 = 'B';
 	static char blood3 = 'O';
-	static String bloodChoice = bloodStr + menuString (blood1, blood2, blood3);
+	static String bloodChoiceStr = bloodStr + menuString (blood1, blood2, blood3);
 
 	static String hasWorkStr = "Trabalha? ";
 	static String hasWTrueStr = " trabalha";
 	static String hasWFalseStr = " não trabalha";
-	static String hasWorkChoice = hasWorkStr + menuString (hasWTrueStr, hasWFalseStr);
+	static String hasWorkChoiceStr = hasWorkStr + menuString (hasWTrueStr, hasWFalseStr);
 	/*
 		/\
 		|| reusable strings
@@ -98,6 +98,15 @@ class DataTypes extends ImputHelper {
 		return hasWork;
 	}
 
+	//predicate: InputHelper.processInput (name, String.class)
+	public void setName (String name, Predicate<String> verifier){
+		if (verifier.test (name)){
+			this.name = name;
+		} else {
+			throw new IllegalArgumentException (errIllegalStr);
+		}
+	}
+
 	//predicate: InputHelper.verifyInput (age, DataTypes.minAge, DataTypes.maxAge)
 	public void setAge (int age, Predicate<Integer> verifier){
 		if (verifier.test (age)){
@@ -116,10 +125,18 @@ class DataTypes extends ImputHelper {
 		}
 	}
 
-	//predicate: InputHelper.processInput (name, String.class)
-	public void setName (String name, Predicate<String> verifier){
-		if (verifier.test (name)){
-			this.name = name;
+	//predicate: InputHelper.verifyInput (blood)
+	public void setBlood (char blood, Predicate<> verifier){
+		if (verifier.test (blood)){
+			this.blood = blood;
+		} else {
+			throw new IllegalArgumentException (errIllegalStr);
+		}
+	}
+
+	public void setHeight (float height, Predicate<Float> verifier){
+		if (verifier.test (height)){
+			this.height = height;
 		} else {
 			throw new IllegalArgumentException (errIllegalStr);
 		}
@@ -144,9 +161,9 @@ class DataTypes extends ImputHelper {
 		int ageInput = userInput (ageStr, Integer.class, input, minAge, maxAge);
 		float heightInput = userInput (heightStr, Float.class, input, minHeight, maxHeight);
 
-		choice = userInput (bloodChoice, Integer.class, input, 1, 3);
+		choice = userInput (bloodChoiceStr, Integer.class, input, 1, 3);
 		char chooseChar = userChoice (choice, blood1, blood2, blood3);
-		choice = userInput (hasWorkChoice, Integer.class, input, 1, 2);
+		choice = userInput (hasWorkChoiceStr, Integer.class, input, 1, 2);
 		boolean chooseBool = userChoice (choice, true, false);
 
 		pessoa.setName (nameInput, InputHelper.processInput (name, String.class));
