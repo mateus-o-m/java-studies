@@ -16,6 +16,7 @@ class DataTypes extends ImputHelper {
 	static float minHeight = 1.0f;
 	static float maxHeight = 2.3f;
 	static String regexStr = "^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
+	static String bloodTypes = "ABO";
 
 	/*
 		|| reusable strings 
@@ -51,6 +52,7 @@ class DataTypes extends ImputHelper {
 	static String hasWorkStr = "Trabalha? ";
 	static String hasWTrueStr = " trabalha";
 	static String hasWFalseStr = " não trabalha";
+	static String hasWAgeFailStr = " não possuí idade suficiente para traballhar";
 	static String hasWorkChoiceStr = hasWorkStr + menuString (hasWTrueStr, hasWFalseStr);
 	/*
 		/\
@@ -125,20 +127,22 @@ class DataTypes extends ImputHelper {
 		}
 	}
 
-	//predicate: InputHelper.verifyInput (blood)
-	public void setBlood (char blood, Predicate<> verifier){
-		if (verifier.test (blood)){
+	public void setBlood (char blood, String bloodMatch){
+		String bloodStr = String.valueOf (blood);
+
+		if (bloodStr.matches (bloodMatch)){
 			this.blood = blood;
 		} else {
 			throw new IllegalArgumentException (errIllegalStr);
 		}
 	}
 
-	public void setHeight (float height, Predicate<Float> verifier){
-		if (verifier.test (height)){
-			this.height = height;
+	public void setHasWork (boolean hasWork){
+		if (hasWork && this.age < 14){
+			System.out.println (name + hasWAgeFailStr);
+			this.hasWork = false;
 		} else {
-			throw new IllegalArgumentException (errIllegalStr);
+			this.hasWork = hasWork;
 		}
 	}
 
