@@ -64,19 +64,19 @@ class DataTypes extends ImputHelper {
 		\/
 	*/
 	void showBoolean(){
-		if (hasWork == true){
+		if (pessoa.getHasWork() == true){
 			System.out.println (name + hasWTrueStr);
-		} else if (hasWork == false){
+		} else if (pessoa.getHasWork() == false){
 			System.out.println (name + hasWFalseStr);
 		}
 	}
 
 	//update to get methods: name -> getName, age -> getAge ...
 	void showData(){
-		System.out.println (nameStr + name);
-		System.out.println (ageStr + age);
-		System.out.println (bloodStr + blood);
-		System.out.println (heightStr + height);
+		System.out.println (nameStr + pessoa.getName());
+		System.out.println (ageStr + pessoa.getAge());
+		System.out.println (bloodStr + pessoa.getBlood());
+		System.out.println (heightStr + pessoa.getHeight());
 		showBoolean ();
 	}
 	/*
@@ -166,14 +166,15 @@ class DataTypes extends ImputHelper {
 		float heightInput = userInput (heightStr, Float.class, input, minHeight, maxHeight);
 
 		choice = userInput (bloodChoiceStr, Integer.class, input, 1, 3);
-		char chooseChar = userChoice (choice, blood1, blood2, blood3);
+		char chooseBlood = userChoice (choice, blood1, blood2, blood3);
 		choice = userInput (hasWorkChoiceStr, Integer.class, input, 1, 2);
-		boolean chooseBool = userChoice (choice, true, false);
+		boolean chooseHasWork = userChoice (choice, true, false);
 
 		pessoa.setName (nameInput, InputHelper.processInput (name, String.class));
 		pessoa.setAge (ageInput, InputHelper.verifyInput (age, DataTypes.minAge, DataTypes.maxAge));
 		pessoa.setHeight (heightInput, InputHelper.verifyInput (heigth, DataTypes.minHeight, DataTypes.maxHwight);
-
+		pessoa.setBlood (chooseBlood, bloodMatch);
+		pessoa.setHasWork (chooseHasWork);
 					
 		pessoa.showData();
 	}
