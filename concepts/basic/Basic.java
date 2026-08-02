@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 
 //class that uses different data types
-class DataTypes extends ImputHelper {
+class DataTypes extends InputHelper {
 	//main variables
 	private int age;
 	private float height;
@@ -63,21 +63,21 @@ class DataTypes extends ImputHelper {
 		|| visualizations 
 		\/
 	*/
-	void showBoolean(){
-		if (pessoa.getHasWork() == true){
+	void showBoolean (DataTypes p){
+		if (p.getHasWork() == true){
 			System.out.println (name + hasWTrueStr);
-		} else if (pessoa.getHasWork() == false){
+		} else if (p.getHasWork() == false){
 			System.out.println (name + hasWFalseStr);
 		}
 	}
 
 	//update to get methods: name -> getName, age -> getAge ...
-	void showData(){
-		System.out.println (nameStr + pessoa.getName());
-		System.out.println (ageStr + pessoa.getAge());
-		System.out.println (bloodStr + pessoa.getBlood());
-		System.out.println (heightStr + pessoa.getHeight());
-		showBoolean ();
+	void showData (DataTypes p){
+		System.out.println (nameStr + p.getName());
+		System.out.println (ageStr + p.getAge());
+		System.out.println (bloodStr + p.getBlood());
+		System.out.println (heightStr + p.getHeight());
+		showBoolean (DataTypes (p));
 	}
 	/*
 		/\
@@ -157,7 +157,6 @@ class DataTypes extends ImputHelper {
 
 	public static void main (String args[]){
 		int choice;
-		DataTypes pessoa = new DataTypes ();
 		Scanner input = new Scanner (System.in);
 		System.out.println ("Preencha os dados abaixo");
 
@@ -170,28 +169,33 @@ class DataTypes extends ImputHelper {
 		choice = userInput (hasWorkChoiceStr, Integer.class, input, 1, 2);
 		boolean chooseHasWork = userChoice (choice, true, false);
 
-		pessoa.setName (nameInput, InputHelper.processInput (name, String.class));
-		pessoa.setAge (ageInput, InputHelper.verifyInput (age, DataTypes.minAge, DataTypes.maxAge));
-		pessoa.setHeight (heightInput, InputHelper.verifyInput (heigth, DataTypes.minHeight, DataTypes.maxHwight);
-		pessoa.setBlood (chooseBlood, bloodMatch);
+		DataTypes pessoa = new DataTypes (ageInput, heightInput, chooseBlood, chooseHasWork, nameInput);
+
+		pessoa.setName (nameInput, processInput (nameInput, String.class));
+		pessoa.setAge (ageInput, x -> verifyInput (x, DataTypes.minAge, DataTypes.maxAge));
+		pessoa.setHeight (heightInput, x -> verifyInput (x, DataTypes.minHeight, DataTypes.maxHwight));
+		pessoa.setBlood (chooseBlood, bloodTypes);
 		pessoa.setHasWork (chooseHasWork);
 					
-		pessoa.showData();
+		pessoa.showData (DataTypes (pessoa));
 	}
 }
 
 //utilitaries
-class ImputHelper {
+class InputHelper {
+	static <T extends Comparable <T>> boolean inputIsValid (T input, T min, T max){
+		return (input.compareTo (min) >= 0 && input.compareTo (max) <= 0);
+	}
+
 	//verify user numeric inputs, can have both integer or decimal arguments
 	static <T extends Comparable <T>> T verifyInput (T input, T min, T max){
-		if (input.compareTo (min) >= 0 && input.compareTo (max) <= 0){
+		if (inputIsValid (input, min, max)){
 			return (T) input;
 		} else {
 			System.out.println (input + DataTypes.errInputStr);
 			return null;
 		}
 	}
-
 	
 	//methods overloader for String data types
 	static <T extends Comparable <T>> T userInput (String message, Class<T> dataType, Scanner scan) {
