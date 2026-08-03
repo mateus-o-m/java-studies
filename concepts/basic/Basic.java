@@ -16,7 +16,7 @@ class DataTypes extends InputHelper {
 	static float minHeight = 1.0f;
 	static float maxHeight = 2.3f;
 	static String regexStr = "^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
-	static String bloodTypes = "ABO";
+	static String bloodTypes = "[ABO]";
 
 	/*
 		|| reusable strings 
@@ -110,7 +110,7 @@ class DataTypes extends InputHelper {
 		if (verifier.test (name)){
 			this.name = name;
 		} else {
-			throw new IllegalArgumentException ();
+			throw new IllegalArgumentException (errIllegalNameStr);
 		}
 	}
 
@@ -119,7 +119,7 @@ class DataTypes extends InputHelper {
 		if (verifier.test (age)){
 			this.age = age;
 		} else {
-			throw new IllegalArgumentException ();
+			throw new IllegalArgumentException (errIllegalAgeStr);
 		}
 	}
 
@@ -128,7 +128,7 @@ class DataTypes extends InputHelper {
 		if (verifier.test (height)){
 			this.height = height;
 		} else {
-			throw new IllegalArgumentException ();
+			throw new IllegalArgumentException (errIllegalHeightStr);
 		}
 	}
 
@@ -138,7 +138,7 @@ class DataTypes extends InputHelper {
 		if (bloodStr.matches (bloodMatch)){
 			this.blood = blood;
 		} else {
-			throw new IllegalArgumentException ();
+			throw new IllegalArgumentException (errIllegalBloodStr);
 		}
 	}
 
