@@ -25,7 +25,12 @@ class DataTypes extends InputHelper {
 	static String errNullStr = "Não foi possível ler o input, tente novamente";
 	static String errNumStr = "Formato numérico inválido, tente novamente";
 	static String errInputStr = " é um valor inválido, tente novamente";
-	static String errIllegalStr = "Não foi possível atribuir o valor";
+	static String errIllegalStr = "Não foi possível atribuir o valor.";
+	static String errIllegalNameStr = "Nome inválido";
+	static String errIllegalAgeStr = "Idade inválida";
+	static String errIllegalHeightStr = "Altura inválida";
+	static String errIllegalBloodStr = "Tipo sanguíneo inválido";
+	static String errIllegalHasWStr = "Verificação de trabalho falhou";
 
 	static String ageStr = "Idade: ";
 	static String heightStr = "Altura: ";
@@ -65,9 +70,9 @@ class DataTypes extends InputHelper {
 	*/
 	void showBoolean (DataTypes p){
 		if (p.getHasWork() == true){
-			System.out.println (name + hasWTrueStr);
+			System.out.println (p.getName() + hasWTrueStr);
 		} else if (p.getHasWork() == false){
-			System.out.println (name + hasWFalseStr);
+			System.out.println (p.getName() + hasWFalseStr);
 		}
 	}
 
@@ -77,7 +82,7 @@ class DataTypes extends InputHelper {
 		System.out.println (ageStr + p.getAge());
 		System.out.println (bloodStr + p.getBlood());
 		System.out.println (heightStr + p.getHeight());
-		showBoolean (DataTypes (p));
+		showBoolean (p);
 	}
 	/*
 		/\
@@ -105,7 +110,7 @@ class DataTypes extends InputHelper {
 		if (verifier.test (name)){
 			this.name = name;
 		} else {
-			throw new IllegalArgumentException (errIllegalStr);
+			throw new IllegalArgumentException ();
 		}
 	}
 
@@ -114,7 +119,7 @@ class DataTypes extends InputHelper {
 		if (verifier.test (age)){
 			this.age = age;
 		} else {
-			throw new IllegalArgumentException (errIllegalStr);
+			throw new IllegalArgumentException ();
 		}
 	}
 
@@ -123,7 +128,7 @@ class DataTypes extends InputHelper {
 		if (verifier.test (height)){
 			this.height = height;
 		} else {
-			throw new IllegalArgumentException (errIllegalStr);
+			throw new IllegalArgumentException ();
 		}
 	}
 
@@ -133,7 +138,7 @@ class DataTypes extends InputHelper {
 		if (bloodStr.matches (bloodMatch)){
 			this.blood = blood;
 		} else {
-			throw new IllegalArgumentException (errIllegalStr);
+			throw new IllegalArgumentException ();
 		}
 	}
 
@@ -146,7 +151,6 @@ class DataTypes extends InputHelper {
 		}
 	}
 
-	//future feature: update to get method and set method
 	public DataTypes (int age, float height, char blood, boolean hasWork, String name){
 		this.age = age;
 		this.height = height;
@@ -154,6 +158,9 @@ class DataTypes extends InputHelper {
 		this.hasWork = hasWork;
 		this.name = name;
 	}
+
+	//DataTypes constructor overloader
+	public DataTypes () {}
 
 	public static void main (String args[]){
 		int choice;
@@ -169,27 +176,37 @@ class DataTypes extends InputHelper {
 		choice = userInput (hasWorkChoiceStr, Integer.class, input, 1, 2);
 		boolean chooseHasWork = userChoice (choice, true, false);
 
-		DataTypes pessoa = new DataTypes (ageInput, heightInput, chooseBlood, chooseHasWork, nameInput);
+		DataTypes pessoa = new DataTypes();
 
-		pessoa.setName (nameInput, processInput (nameInput, String.class));
-		pessoa.setAge (ageInput, x -> verifyInput (x, DataTypes.minAge, DataTypes.maxAge));
-		pessoa.setHeight (heightInput, x -> verifyInput (x, DataTypes.minHeight, DataTypes.maxHwight));
-		pessoa.setBlood (chooseBlood, bloodTypes);
-		pessoa.setHasWork (chooseHasWork);
+		//object atributes validation
+		try {
+			pessoa.setName (nameInput, x -> stringIsValid (nameInput));
+			pessoa.setAge (ageInput, x -> numInputIsValid (x, DataTypes.minAge, DataTypes.maxAge));
+			pessoa.setHeight (heightInput, x -> numInputIsValid (x, DataTypes.minHeight, DataTypes.maxHeight));
+			pessoa.setBlood (chooseBlood, bloodTypes);
+			pessoa.setHasWork (chooseHasWork);
+		} catch (IllegalArgumentException e) {
+			System.out.println (errIllegalStr + e.getMessage());
+		}
+		
 					
-		pessoa.showData (DataTypes (pessoa));
+		pessoa.showData (pessoa);
 	}
 }
 
 //utilitaries
 class InputHelper {
-	static <T extends Comparable <T>> boolean inputIsValid (T input, T min, T max){
+	static boolean stringIsValid (String input){
+		return (DataTypes.regexStr != null && input.matches (DataTypes.regexStr));
+	}
+
+	static <T extends Comparable <T>> boolean numInputIsValid (T input, T min, T max){
 		return (input.compareTo (min) >= 0 && input.compareTo (max) <= 0);
 	}
 
 	//verify user numeric inputs, can have both integer or decimal arguments
 	static <T extends Comparable <T>> T verifyInput (T input, T min, T max){
-		if (inputIsValid (input, min, max)){
+		if (numInputIsValid (input, min, max)){
 			return (T) input;
 		} else {
 			System.out.println (input + DataTypes.errInputStr);
@@ -201,10 +218,6 @@ class InputHelper {
 	static <T extends Comparable <T>> T userInput (String message, Class<T> dataType, Scanner scan) {
 		return userInput (message, dataType, scan, null, null);
 	}
-	static <T extends Comparable <T>> T processInput (String input, Class<T> dataType) {
-		return processInput (input, dataType);
-	}
-
 
 	//input gather loop
 	static <T extends Comparable <T>> T userInput (String message, Class <T> dataType, Scanner scan, T min, T max){
@@ -216,11 +229,12 @@ class InputHelper {
 				System.out.println (DataTypes.errNullStr);
 				continue;
 			}
+			T validation = processInput (input, dataType, min, max);
 			try {
-				if (processInput (input, dataType, min, max) == null){
+				if (validation == null){
 					continue;
 				} else { 
-					return processInput (input, dataType, min, max);
+					return validation;
 				}
 			} catch (NumberFormatException e){
             	System.out.println (DataTypes.errNumStr);
@@ -233,7 +247,7 @@ class InputHelper {
 	//validation and data process
 	static <T extends Comparable <T>> T processInput (String input, Class<T> dataType, T min, T max){
 		if (dataType == String.class){
-			if (DataTypes.regexStr != null && input.matches (DataTypes.regexStr)){
+			if (stringIsValid (input)){
 				return (T) input;
 			} else {
 				System.out.println (input + DataTypes.errInputStr);
