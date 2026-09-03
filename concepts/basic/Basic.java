@@ -229,8 +229,9 @@ class InputHelper {
 				System.out.println (DataTypes.errNullStr);
 				continue;
 			}
-			T validation = processInput (input, dataType, min, max);
+			
 			try {
+				T validation = processInput (input, dataType, min, max);
 				if (validation == null){
 					continue;
 				} else { 
